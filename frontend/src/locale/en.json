@@ -1,5 +1,13 @@
 {
   "home": {
     "title": "Home"
+  },
+  "nav-bar": {
+    "title": "ÖBB Planner"
+  },
+  "footer": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact"
   }
 }

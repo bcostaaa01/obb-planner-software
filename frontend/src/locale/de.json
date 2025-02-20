@@ -1,5 +1,13 @@
 {
   "home": {
     "title": "Startseite"
+  },
+  "nav-bar": {
+    "title": "ÖBB Reiseplanner"
+  },
+  "footer": {
+    "home": "Startseite",
+    "about": "Über uns",
+    "contact": "Kontakt"
   }
 }
