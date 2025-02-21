@@ -5,6 +5,11 @@
   "nav-bar": {
     "title": "ÖBB Reiseplanner"
   },
+  "trip-planner": {
+    "departure": "Abfahrtsstation",
+    "destination": "Ankunftsstation",
+    "search": "Suchen"
+  },
   "footer": {
     "home": "Startseite",
     "about": "Über uns",
