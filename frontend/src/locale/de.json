@@ -3,12 +3,14 @@
     "title": "Startseite"
   },
   "nav-bar": {
-    "title": "ÖBB Reiseplanner"
+    "title": "Reiseplanner"
   },
   "trip-planner": {
+    "heading": "Fahrplan & Tickets",
     "departure": "Abfahrtsstation",
     "destination": "Ankunftsstation",
-    "search": "Suchen"
+    "search": "Verindung Suchen",
+    "buy-tickets": "Jetzt kaufen"
   },
   "footer": {
     "home": "Startseite",
