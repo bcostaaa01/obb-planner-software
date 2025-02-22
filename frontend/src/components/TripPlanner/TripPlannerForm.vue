@@ -8,18 +8,20 @@
             <div class="flex flex-col mt-10">
                 <span class="text-gray-800 font-bold mb-2">{{ t('trip-planner.departure') }}</span>
                 <fwb-select id="abfahrt" model-value="" required size="sm" type="multiselect" class="h-10"
-                    placeholder="Wähle eine Abfahrtsstation" :options="stations" />
+                    placeholder="Wähle eine Abfahrtsstation" :options="stations"
+                    @update:model-value="startStation = $event" />
             </div>
             <div class="flex flex-col ml-6 mt-10">
                 <span class="text-gray-800 font-bold mb-2">{{ t('trip-planner.destination') }}</span>
                 <fwb-select id="ankunft" model-value="" required size="sm" type="multiselect" class="h-10"
-                    placeholder="Wähle eine Ankunftsstation" :options="stations" />
+                    placeholder="Wähle eine Ankunftsstation" :options="stations"
+                    @update:model-value="endStation = $event" />
             </div>
         </div>
 
         <div class="flex flex-row justify-between mt-4">
             <fwb-button type="submit" size="md" class="w-full cursor-pointer"
-                style="background-color: #e2002a; border-radius: 0px;">{{
+                style="background-color: #e2002a; border-radius: 0px;" @click="saveTripDetails">{{
                     t('trip-planner.search') }}</fwb-button>
             <fwb-button type="submit" size="md" class="w-full cursor-pointer ml-6"
                 style="background-color: #e2002a; border-radius: 0px;">{{
@@ -34,8 +36,21 @@ import { FwbButton, FwbSelect } from 'flowbite-vue';
 import { useI18n } from 'vue-i18n';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faRoute } from '@fortawesome/free-solid-svg-icons';
+import { useSaveTrip } from '../../composables/useSaveTrip';
 
 const { t } = useI18n();
+
+const startStation = ref("");
+const endStation = ref("");
+
+const { saveTrip } = useSaveTrip();
+
+const saveTripDetails = () => {
+    saveTrip({
+        startStation: startStation.value,
+        endStation: endStation.value,
+    });
+};
 
 const stations = ref([{
     name: "Wien Hbf",

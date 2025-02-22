@@ -7,6 +7,7 @@ import router from "./router";
 import { createI18n } from "vue-i18n";
 import de from "./locale/de.json";
 import en from "./locale/en.json";
+import { createPinia } from "pinia";
 
 const i18n = createI18n({
   locale: "de",
@@ -16,4 +17,6 @@ const i18n = createI18n({
   },
 });
 
-createApp(App).use(router).use(i18n).mount("#app");
+const pinia = createPinia();
+
+createApp(App).use(router).use(i18n).use(pinia).mount("#app");
