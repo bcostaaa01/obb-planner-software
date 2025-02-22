@@ -3,7 +3,7 @@
         <router-link to="/" class="flex items-center gap-2">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Logo_%C3%96BB.svg/1200px-Logo_%C3%96BB.svg.png"
                 class="h-10" />
-            <span class="text-black text-2xl font-bold cursor-pointer">{{ t('nav-bar.title') }}</span>
+            <span class="text-gray-800 text-2xl font-bold cursor-pointer">{{ t('nav-bar.title') }}</span>
         </router-link>
     </div>
 </template>
