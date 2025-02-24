@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
+import TripDetails from "../views/TripDetails.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -7,6 +8,10 @@ const router = createRouter({
     {
       path: "/",
       component: Home,
+    },
+    {
+      path: "/trip-details",
+      component: TripDetails,
     },
   ],
 });

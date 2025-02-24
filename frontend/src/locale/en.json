@@ -10,7 +10,10 @@
     "departure": "Departure Station",
     "destination": "Destination Station",
     "search": "Search Connection",
-    "buy-tickets": "Buy Ticket Now"
+    "buy-tickets": "Buy Ticket Now",
+    "best-fare": "Best fare",
+    "filters": "Filters",
+    "direction": "Direction"
   },
   "footer": {
     "home": "Home",

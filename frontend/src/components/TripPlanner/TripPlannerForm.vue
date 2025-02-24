@@ -49,6 +49,10 @@ const saveTripDetails = () => {
     saveTrip({
         startStation: startStation.value,
         endStation: endStation.value,
+        startTime: new Date().toISOString(),
+        endTime: new Date().toISOString(),
+        price: 10,
+        id: 1
     });
 };
 

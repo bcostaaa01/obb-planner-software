@@ -9,8 +9,11 @@
     "heading": "Fahrplan & Tickets",
     "departure": "Abfahrtsstation",
     "destination": "Ankunftsstation",
-    "search": "Verindung Suchen",
-    "buy-tickets": "Jetzt kaufen"
+    "search": "Verbindung suchen",
+    "buy-tickets": "Jetzt kaufen",
+    "best-fare": "Beste Fahrkarte",
+    "filters": "Filter",
+    "direction": "Richtung"
   },
   "footer": {
     "home": "Startseite",
