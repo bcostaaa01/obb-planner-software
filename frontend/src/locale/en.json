@@ -15,6 +15,9 @@
     "filters": "Filters",
     "direction": "Direction"
   },
+  "trip-details": {
+    "back": "Back"
+  },
   "footer": {
     "home": "Home",
     "about": "About",
