@@ -9,7 +9,8 @@
         </div>
         <div class="flex justify-between items-center mb-4">
             <div class="flex items-center">
-                <button class="text-sm flex items-center cursor-pointer" @click="toggleDirection">
+                <button class="text-sm flex items-center cursor-pointer hover:bg-gray-100 rounded-md p-2"
+                    @click="toggleDirection">
                     <FontAwesomeIcon :icon="faArrowsTurnToDots" class="mr-2" />
                     {{ t('trip-planner.direction') }}
                 </button>
