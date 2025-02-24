@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col bg-white shadow-md p-4 w-full">
         <div class="flex justify-between items-center mb-6">
-            <h2 class="text-xl font-bold text-gray-900">{{ currentDeparture }} › {{ currentDestination }}</h2>
+            <h2 class="text-xl text-gray-900">{{ currentDeparture }} › {{ currentDestination }}</h2>
         </div>
         <div class="flex justify-between items-center">
             <div class="flex items-center">
@@ -23,7 +23,7 @@
                     {{ t('trip-planner.filters') }}
                 </button>
             </div>
-            <span class="text-lg font-semibold">{{ date }} {{ time }}</span>
+            <span class="text-lg">{{ date }} {{ time }}</span>
         </div>
     </div>
 </template>
