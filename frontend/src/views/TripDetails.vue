@@ -12,27 +12,24 @@
             </div>
 
             <div class="flex flex-col items-center justify-center w-1/2 z-10">
-                <SelectedTrip :date="selectedTrip.date" :time="selectedTrip.time" :departure="selectedTrip.departure"
-                    :destination="selectedTrip.arrival" />
+                <SelectedTrip :date="selectedTrip?.startTime" :time="selectedTrip?.endTime"
+                    :departure="selectedTrip?.startStation" :destination="selectedTrip?.endStation" />
             </div>
         </div>
     </AppLayout>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import AppLayout from '../components/layouts/AppLayout.vue';
 import SelectedTrip from '../components/TripPlanner/SelectedTrip.vue';
 import { useI18n } from 'vue-i18n';
+import { useTripsStore } from '../stores/Trips.store';
 
 const { t } = useI18n();
 
-const selectedTrip = ref({
-    date: '22.02.2025',
-    time: '10:00',
-    departure: 'Wien Hbf',
-    arrival: 'Salzburg Hbf',
-})
+const tripsStore = useTripsStore();
+const selectedTrip = computed(() => tripsStore.selectedTrip);
 </script>

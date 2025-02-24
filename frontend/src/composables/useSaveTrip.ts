@@ -8,5 +8,9 @@ export const useSaveTrip = () => {
     tripsStore.saveTrip(trip);
   };
 
-  return { saveTrip };
+  const setSelectedTrip = (trip: Trip) => {
+    tripsStore.setSelectedTrip(trip);
+  };
+
+  return { saveTrip, setSelectedTrip };
 };

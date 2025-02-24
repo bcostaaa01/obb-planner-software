@@ -37,23 +37,29 @@ import { useI18n } from 'vue-i18n';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faRoute } from '@fortawesome/free-solid-svg-icons';
 import { useSaveTrip } from '../../composables/useSaveTrip';
+import { useRouter } from 'vue-router';
 
 const { t } = useI18n();
 
 const startStation = ref("");
 const endStation = ref("");
 
-const { saveTrip } = useSaveTrip();
+const { saveTrip, setSelectedTrip } = useSaveTrip();
+const router = useRouter();
+
 
 const saveTripDetails = () => {
-    saveTrip({
+    const trip = {
         startStation: startStation.value,
         endStation: endStation.value,
-        startTime: new Date().toISOString(),
-        endTime: new Date().toISOString(),
+        startTime: new Date().toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' }),
+        endTime: new Date().toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }),
         price: 10,
         id: 1
-    });
+    };
+    saveTrip(trip);
+    setSelectedTrip(trip);
+    router.push('/trip-details');
 };
 
 const stations = ref([{
