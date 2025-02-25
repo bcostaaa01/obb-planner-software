@@ -12,8 +12,8 @@
             </div>
 
             <div class="flex flex-col items-center justify-center w-1/2 z-10">
-                <SelectedTrip :date="selectedTrip?.startTime" :time="selectedTrip?.endTime"
-                    :departure="selectedTrip?.startStation" :destination="selectedTrip?.endStation" />
+                <SelectedTrip :date="selectedTrip?.startTime || ''" :time="selectedTrip?.endTime || ''"
+                    :departure="selectedTrip?.startStation || ''" :destination="selectedTrip?.endStation || ''" />
             </div>
         </div>
     </AppLayout>
