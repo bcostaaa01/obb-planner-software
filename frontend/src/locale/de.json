@@ -13,10 +13,21 @@
     "buy-tickets": "Jetzt kaufen",
     "best-fare": "Beste Fahrkarte",
     "filters": "Filter",
-    "direction": "Richtung"
+    "direction": "Richtung",
+    "forward": "Hin",
+    "return": "Rück",
+    "available-connections": "Verfügbare Verbindungen",
+    "no-trips": "Es gibt keine Verbindungen für diese Route."
   },
   "trip-details": {
-    "back": "Zurück"
+    "back": "Zurück",
+    "price": "Preis",
+    "other-connections": "Andere Verbindungen",
+    "buy-tickets": "Jetzt kaufen"
+  },
+  "not-found": {
+    "title": "404: Seite nicht gefunden",
+    "message": "Seite nicht gefunden. Bitte überprüfen Sie die URL oder gehen Sie zurück zur Startseite."
   },
   "footer": {
     "home": "Startseite",

@@ -13,10 +13,19 @@
     "buy-tickets": "Buy Ticket Now",
     "best-fare": "Best fare",
     "filters": "Filters",
-    "direction": "Direction"
+    "direction": "Direction",
+    "available-connections": "Available Connections",
+    "no-trips": "No trips found for this route."
   },
   "trip-details": {
-    "back": "Back"
+    "back": "Back",
+    "price": "Price",
+    "other-connections": "Other Connections",
+    "buy-tickets": "Buy Ticket Now"
+  },
+  "not-found": {
+    "title": "404: Page not found",
+    "message": "Page not found. Please check the URL or go back to the home page."
   },
   "footer": {
     "home": "Home",
