@@ -7,20 +7,26 @@
         <div class="flex flex-row">
             <div class="flex flex-col mt-10">
                 <span class="text-gray-800 font-bold mb-2">{{ t('trip-planner.departure') }}</span>
-                <fwb-select id="abfahrt" model-value="" required size="sm" type="multiselect" class="h-10"
+                <fwb-select id="abfahrt" :model-value="startStation" required size="sm" type="multiselect" class="h-10"
                     placeholder="Wähle eine Abfahrtsstation" :options="stations"
-                    @update:model-value="startStation = $event" />
+                    @update:model-value="(value) => { startStation = value; updateValidationStatus(); }"
+                    :validation-status="showError ? validationStatus : undefined" />
             </div>
             <div class="flex flex-col ml-6 mt-10">
                 <span class="text-gray-800 font-bold mb-2">{{ t('trip-planner.destination') }}</span>
-                <fwb-select id="ankunft" model-value="" required size="sm" type="multiselect" class="h-10"
+                <fwb-select id="ankunft" :model-value="endStation" required size="sm" type="multiselect" class="h-10"
                     placeholder="Wähle eine Ankunftsstation" :options="stations"
-                    @update:model-value="endStation = $event" />
+                    @update:model-value="(value) => { endStation = value; updateValidationStatus(); }"
+                    :validation-status="showError ? validationStatus : undefined" />
             </div>
             <div class="flex flex-col ml-6 mt-10">
                 <span class="text-gray-800 font-bold mb-2">{{ t('trip-planner.departure-time') }}</span>
                 <input type="time" v-model="startTime" class="h-10 px-2 border border-gray-300 rounded text-gray-800" />
             </div>
+        </div>
+
+        <div v-if="showError" class="mt-2">
+            <span class="text-red-500">{{ errorMessage }}</span>
         </div>
 
         <div class="flex flex-row justify-between mt-4">
@@ -43,19 +49,47 @@ import { faRoute } from '@fortawesome/free-solid-svg-icons';
 import { useSaveTrip } from '../../composables/useSaveTrip';
 import { useRouter } from 'vue-router';
 import { mockTrips } from '../../mocks/trips';
+import type { ValidationStatus } from 'flowbite-vue/components/FwbSelect/types.js';
 
 const { t } = useI18n();
 
 const startStation = ref("");
 const endStation = ref("");
 const startTime = ref(new Date().toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }));
+const validationStatus = ref<ValidationStatus | undefined>(undefined);
+const showError = ref(false);
+const errorMessage = ref("");
 
 const { saveTrip, setAvailableTrips } = useSaveTrip();
 const router = useRouter();
 
-const saveTripDetails = () => {
+const updateValidationStatus = () => {
     if (!startStation.value || !endStation.value) {
-        return t('trip-planner.please-select-stations');
+        validationStatus.value = "error";
+    } else if (startStation.value === endStation.value) {
+        validationStatus.value = "error";
+    } else {
+        validationStatus.value = undefined;
+    }
+};
+
+const validateForm = () => {
+    if (!startStation.value || !endStation.value) {
+        showError.value = true;
+        errorMessage.value = t('trip-planner.please-select-stations');
+        return false;
+    } else if (startStation.value === endStation.value) {
+        showError.value = true;
+        errorMessage.value = t('trip-planner.same-station-error');
+        return false;
+    }
+    showError.value = false;
+    return true;
+};
+
+const saveTripDetails = () => {
+    if (!validateForm()) {
+        return;
     }
 
     saveTrip({

@@ -20,7 +20,8 @@
     "available-connections": "Verfügbare Verbindungen",
     "no-trips": "Es gibt keine Verbindungen für diese Route.",
     "please-select-stations": "Bitte wählen Sie beide Stationen.",
-    "no-alternative-trips": "Es gibt keine alternative Verbindungen für diese Route."
+    "no-alternative-trips": "Es gibt keine alternative Verbindungen für diese Route.",
+    "same-station-error": "Die Start- und Endstation dürfen nicht die gleiche Station sein."
   },
   "trip-details": {
     "back": "Zurück",
