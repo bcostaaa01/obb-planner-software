@@ -9,6 +9,7 @@
     "heading": "Fahrplan & Tickets",
     "departure": "Abfahrtsstation",
     "destination": "Ankunftsstation",
+    "departure-time": "Abfahrtszeit",
     "search": "Verbindung suchen",
     "buy-tickets": "Jetzt kaufen",
     "best-fare": "Beste Fahrkarte",
@@ -17,7 +18,9 @@
     "forward": "Hin",
     "return": "Rück",
     "available-connections": "Verfügbare Verbindungen",
-    "no-trips": "Es gibt keine Verbindungen für diese Route."
+    "no-trips": "Es gibt keine Verbindungen für diese Route.",
+    "please-select-stations": "Bitte wählen Sie beide Stationen.",
+    "no-alternative-trips": "Es gibt keine alternative Verbindungen für diese Route."
   },
   "trip-details": {
     "back": "Zurück",

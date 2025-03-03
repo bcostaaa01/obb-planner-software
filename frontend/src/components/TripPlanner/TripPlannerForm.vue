@@ -17,6 +17,10 @@
                     placeholder="Wähle eine Ankunftsstation" :options="stations"
                     @update:model-value="endStation = $event" />
             </div>
+            <div class="flex flex-col ml-6 mt-10">
+                <span class="text-gray-800 font-bold mb-2">{{ t('trip-planner.departure-time') }}</span>
+                <input type="time" v-model="startTime" class="h-10 px-2 border border-gray-300 rounded text-gray-800" />
+            </div>
         </div>
 
         <div class="flex flex-row justify-between mt-4">
@@ -38,45 +42,62 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faRoute } from '@fortawesome/free-solid-svg-icons';
 import { useSaveTrip } from '../../composables/useSaveTrip';
 import { useRouter } from 'vue-router';
+import { mockTrips } from '../../mocks/trips';
 
 const { t } = useI18n();
 
 const startStation = ref("");
 const endStation = ref("");
+const startTime = ref(new Date().toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }));
 
-const { saveTrip, setSelectedTrip } = useSaveTrip();
+const { saveTrip, setAvailableTrips } = useSaveTrip();
 const router = useRouter();
 
-
 const saveTripDetails = () => {
-    const trip = {
+    if (!startStation.value || !endStation.value) {
+        return t('trip-planner.please-select-stations');
+    }
+
+    saveTrip({
         startStation: startStation.value,
         endStation: endStation.value,
-        startTime: new Date().toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' }),
-        endTime: new Date().toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }),
-        price: 10,
-        id: 1
-    };
-    saveTrip(trip);
-    setSelectedTrip(trip);
+        startTime: startTime.value,
+    });
+
+    const routeKey = `${startStation.value}-${endStation.value}`;
+    if (mockTrips[routeKey]) {
+        setAvailableTrips(mockTrips[routeKey]);
+    } else {
+        setAvailableTrips([]);
+    }
+
     router.push('/trip-details');
 };
 
-const stations = ref([{
-    name: "Wien Hbf",
-    value: "Wien Hbf"
-},
-{
-    name: "Wien Meidling",
-    value: "Wien Meidling"
-},
-{
-    name: "Wien Westbahnhof",
-    value: "Wien Westbahnhof"
-},
-{
-    name: "Wien Mitte",
-    value: "Wien Mitte"
-},
-])
+const stations = ref([
+    {
+        name: "Wien Hbf",
+        value: "Wien Hbf"
+    },
+    {
+        name: "Wien Meidling",
+        value: "Wien Meidling"
+    },
+    {
+        name: "Wien Westbahnhof",
+        value: "Wien Westbahnhof"
+    },
+    {
+        name: "Wien Mitte",
+        value: "Wien Mitte"
+    },
+    {
+        name: "Graz Hbf",
+        value: "Graz Hbf"
+    },
+    {
+        name: "Salzburg Hbf",
+        value: "Salzburg Hbf"
+    }
+]);
 </script>
