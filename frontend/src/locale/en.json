@@ -18,14 +18,41 @@
     "available-connections": "Available Connections",
     "no-trips": "No trips found for this route.",
     "please-select-stations": "Please select both stations.",
+    "please-select-passenger": "Please select a passenger.",
     "no-alternative-trips": "No alternative trips found for this route.",
-    "same-station-error": "The start and end station cannot be the same."
+    "same-station-error": "The start and end station cannot be the same.",
+    "passenger-type": "Passenger Type",
+    "passenger-count": "Passenger Count",
+    "passenger-discount": "Passenger Discount"
+  },
+  "passenger": {
+    "types": {
+      "adult": "adult",
+      "child": "child",
+      "senior": "senior",
+      "student": "student"
+    },
+    "discounts": {
+      "without_discounts": "without discounts",
+      "vorteilscard": "Vorteilscard",
+      "student_card": "Student Card",
+      "family_card": "Family Card"
+    }
   },
   "trip-details": {
     "back": "Back",
     "price": "Price",
     "other-connections": "Other Connections",
     "buy-tickets": "Buy Ticket Now"
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Cart is empty",
+    "go-back": "Go back",
+    "total": "Total",
+    "proceed-to-checkout": "Proceed to Checkout",
+    "who-is-going": "Who is going?",
+    "one-way-journey": "One-way journey"
   },
   "not-found": {
     "title": "404: Page not found",

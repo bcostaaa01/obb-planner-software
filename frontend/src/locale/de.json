@@ -20,14 +20,41 @@
     "available-connections": "Verfügbare Verbindungen",
     "no-trips": "Es gibt keine Verbindungen für diese Route.",
     "please-select-stations": "Bitte wählen Sie beide Stationen.",
+    "please-select-passenger": "Bitte wählen Sie einen Passagier.",
     "no-alternative-trips": "Es gibt keine alternative Verbindungen für diese Route.",
-    "same-station-error": "Die Start- und Endstation dürfen nicht die gleiche Station sein."
+    "same-station-error": "Die Start- und Endstation dürfen nicht die gleiche Station sein.",
+    "passenger-type": "Passagiertyp",
+    "passenger-discount": "Passagierrabatt",
+    "passenger-count": "Passagieranzahl"
+  },
+  "passenger": {
+    "types": {
+      "adult": "Erwachsene",
+      "child": "Kinder",
+      "senior": "Senioren",
+      "student": "Studenten"
+    },
+    "discounts": {
+      "without_discounts": "ohne Rabatt",
+      "vorteilscard": "Vorteilscard",
+      "student_card": "Studentenkarte",
+      "family_card": "Familienkarte"
+    }
   },
   "trip-details": {
     "back": "Zurück",
     "price": "Preis",
     "other-connections": "Andere Verbindungen",
     "buy-tickets": "Jetzt kaufen"
+  },
+  "cart": {
+    "title": "Warenkorb",
+    "empty": "Warenkorb ist leer",
+    "go-back": "Zurück",
+    "proceed-to-checkout": "Zur Kasse gehen",
+    "total": "Gesamt",
+    "who-is-going": "Wer geht mit?",
+    "one-way-journey": "Einfache Fahrt"
   },
   "not-found": {
     "title": "404: Seite nicht gefunden",

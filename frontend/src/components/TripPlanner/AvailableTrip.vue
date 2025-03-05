@@ -48,8 +48,12 @@
                     </div>
                 </div>
             </div>
-            <div class="flex items-center ml-4">
-                <span class="font-bold text-gray-800">{{ trip.price.toFixed(2) }}€</span>
+            <div class="flex flex-col items-end justify-between ml-4">
+                <div class="flex items-center">
+                    <span class="font-bold text-gray-800">{{ trip.price?.toFixed(2) }}€</span>
+                </div>
+                <PassengerInfo v-if="trip.passenger" :count="trip.passenger.count" :type="trip.passenger.type"
+                    :discount="trip.passenger.discount" />
             </div>
         </div>
     </div>
@@ -61,9 +65,10 @@ import type { ExtendedTrip } from '../../types/Trip';
 import { useSaveTrip } from '../../composables/useSaveTrip';
 import { useRouter } from 'vue-router';
 import Skeleton from './Skeleton.vue';
+import PassengerInfo from './PassengerInfo.vue';
 
 const router = useRouter();
-const { setSelectedTrip, getIsLoading } = useSaveTrip();
+const { setSelectedTrip, getIsLoading, savedTrip } = useSaveTrip();
 
 const props = defineProps({
     trip: {
@@ -80,10 +85,10 @@ const startMinute = computed(() => {
 });
 
 const endHour = computed(() => {
-    return props.trip.endTime.slice(0, 2);
+    return props.trip.endTime ? props.trip.endTime.slice(0, 2) : '';
 });
 const endMinute = computed(() => {
-    return props.trip.endTime.slice(3, 5);
+    return props.trip.endTime ? props.trip.endTime.slice(3, 5) : '';
 });
 
 const segment = computed(() => {
@@ -106,7 +111,12 @@ const transfersText = computed(() => {
 });
 
 function selectTrip() {
-    setSelectedTrip(props.trip);
+    const tripWithPassenger = {
+        ...props.trip,
+        passenger: savedTrip.value?.passenger
+    };
+    setSelectedTrip(tripWithPassenger);
+    console.log(tripWithPassenger);
     router.push('/trip-details');
 }
 </script>

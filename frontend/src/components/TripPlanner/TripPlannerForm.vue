@@ -25,6 +25,24 @@
             </div>
         </div>
 
+        <div class="flex flex-row mt-6">
+            <div class="flex flex-col">
+                <span class="text-gray-800 font-bold mb-2">{{ t('trip-planner.passenger-type') }}</span>
+                <fwb-select id="passenger-type" v-model="selectedPassenger.type" required size="sm" type="multiselect"
+                    class="h-10" :options="passengerTypes" @update:model-value="updateDiscountOptions" />
+            </div>
+            <div class="flex flex-col ml-6">
+                <span class="text-gray-800 font-bold mb-2">{{ t('trip-planner.passenger-discount') }}</span>
+                <fwb-select id="discount" v-model="selectedPassenger.discount" required size="sm" type="multiselect"
+                    class="h-10" :options="availableDiscounts" />
+            </div>
+            <div class="flex flex-col ml-6">
+                <span class="text-gray-800 font-bold mb-2">{{ t('trip-planner.passenger-count') }}</span>
+                <input type="number" v-model="selectedPassenger.count" min="1" max="9"
+                    class="h-10 px-2 border border-gray-300 rounded text-gray-800" />
+            </div>
+        </div>
+
         <div v-if="showError" class="mt-2">
             <span class="text-red-500">{{ errorMessage }}</span>
         </div>
@@ -41,7 +59,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
 import { FwbButton, FwbSelect } from 'flowbite-vue';
 import { useI18n } from 'vue-i18n';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -50,6 +68,7 @@ import { useSaveTrip } from '../../composables/useSaveTrip';
 import { useRouter } from 'vue-router';
 import { mockTrips } from '../../mocks/trips';
 import type { ValidationStatus } from 'flowbite-vue/components/FwbSelect/types.js';
+import type { Passenger, PassengerType, DiscountType } from '../../types/Passenger';
 
 const { t } = useI18n();
 
@@ -62,6 +81,41 @@ const errorMessage = ref("");
 
 const { saveTrip, setAvailableTrips } = useSaveTrip();
 const router = useRouter();
+
+const selectedPassenger = reactive<Passenger>({
+    type: 'adult',
+    count: 1,
+    discount: 'without_discounts'
+});
+
+const passengerTypes = [
+    { value: 'adult', name: t('passenger.types.adult') },
+    { value: 'child', name: t('passenger.types.child') },
+    { value: 'senior', name: t('passenger.types.senior') },
+    { value: 'student', name: t('passenger.types.student') }
+];
+
+const discountOptions = {
+    adult: ['without_discounts', 'vorteilscard', 'family_card'],
+    child: ['without_discounts', 'family_card'],
+    senior: ['without_discounts', 'vorteilscard'],
+    student: ['without_discounts', 'student_card']
+} as const;
+
+const availableDiscounts = ref(
+    discountOptions.adult.map(discount => ({
+        value: discount as DiscountType,
+        name: t(`passenger.discounts.${discount}`)
+    }))
+);
+
+const updateDiscountOptions = (type: PassengerType) => {
+    selectedPassenger.discount = 'without_discounts';
+    availableDiscounts.value = discountOptions[type].map(discount => ({
+        value: discount as DiscountType,
+        name: t(`passenger.discounts.${discount}`)
+    }));
+};
 
 const updateValidationStatus = () => {
     if (!startStation.value || !endStation.value) {
@@ -82,6 +136,10 @@ const validateForm = () => {
         showError.value = true;
         errorMessage.value = t('trip-planner.same-station-error');
         return false;
+    } else if (selectedPassenger.count < 1) {
+        showError.value = true;
+        errorMessage.value = t('trip-planner.please-select-passenger');
+        return false;
     }
     showError.value = false;
     return true;
@@ -96,7 +154,11 @@ const saveTripDetails = () => {
         startStation: startStation.value,
         endStation: endStation.value,
         startTime: startTime.value,
+        discount: selectedPassenger.discount as DiscountType,
+        passenger: selectedPassenger
     });
+
+    console.log(selectedPassenger);
 
     const routeKey = `${startStation.value}-${endStation.value}`;
     if (mockTrips[routeKey]) {

@@ -24,7 +24,8 @@
                                 <span class="text-gray-600">{{ t('trip-details.price') }}:</span>
                                 <span class="font-bold text-gray-800 ml-2">{{ selectedTrip.price.toFixed(2) }}€</span>
                             </div>
-                            <button class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 cursor-pointer">
+                            <button class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 cursor-pointer"
+                                @click="addToCart">
                                 {{ t('trip-details.buy-tickets') }}
                             </button>
                         </div>
@@ -58,10 +59,12 @@ import AvailableTrips from '../components/TripPlanner/AvailableTrips.vue';
 import { useSaveTrip } from '../composables/useSaveTrip';
 import TopBannerLoader from '../components/shared/Loader/TopBannerLoader.vue';
 import Skeleton from '../components/TripPlanner/Skeleton.vue';
+import { useTripsStore } from '../stores/Trips.store';
 
 const { t } = useI18n();
 const { selectedTrip, availableTrips } = useSaveTrip();
 const loading = ref(false);
+const { addTripToCart } = useTripsStore();
 
 const formattedDate = computed(() => {
     if (!selectedTrip.value) return '';
@@ -73,6 +76,12 @@ const formattedTime = computed(() => {
     if (!selectedTrip.value) return '';
     return selectedTrip.value.startTime;
 });
+
+const addToCart = () => {
+    if (selectedTrip.value) {
+        addTripToCart(selectedTrip.value);
+    }
+};
 
 onMounted(() => {
     loading.value = true;
