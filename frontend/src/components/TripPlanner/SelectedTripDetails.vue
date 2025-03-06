@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-row justify-between p-4 bg-white shadow-sm">
-        <div class="flex flex-row cursor-pointer hover:bg-gray-100 transition-colors duration-200">
+        <div @click="goBack" class="flex flex-row cursor-pointer hover:bg-gray-100 transition-colors duration-200">
             <div class="flex flex-col pr-4 mr-4 relative">
                 <TimeDisplay :time="trip.startTime" />
                 <TimeDisplay :time="trip.endTime || ''" />
@@ -31,8 +31,14 @@ import TimeDisplay from './TimeDisplay.vue';
 import StationDisplay from './StationDisplay.vue';
 import PassengerInfo from './PassengerInfo.vue';
 import { useI18n } from 'vue-i18n';
+import { useRouter } from 'vue-router';
 
 const { t } = useI18n();
+const router = useRouter();
+
+const goBack = () => {
+    router.back();
+};
 
 defineProps<{
     trip: Trip;
