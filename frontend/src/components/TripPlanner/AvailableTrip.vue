@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-row h-28 justify-between mb-2 p-4 border border-gray-100 bg-white shadow-sm transition-shadow hover:shadow-md cursor-pointer"
-        @click="selectTrip">
+        @click="() => selectTrip(trip)">
         <Skeleton v-if="getIsLoading()" loading />
         <div v-else class="flex flex-row justify-between w-full">
             <div class="flex flex-col pr-4 mr-4 relative">
@@ -8,13 +8,9 @@
                     {{ trip.startStation }}
                 </span>
                 <div class="flex flex-row">
-                    <span class="font-bold">
-                        {{ startHour }}
-                    </span>
+                    <span class="font-bold">{{ startTime.hours }}</span>
                     :
-                    <span class="font-semibold">
-                        {{ startMinute }}
-                    </span>
+                    <span class="font-semibold">{{ startTime.minutes }}</span>
                 </div>
                 <div class="absolute top-0 bottom-0 right-0 w-px bg-gray-300 h-full"></div>
             </div>
@@ -38,13 +34,9 @@
                         {{ trip.endStation }}
                     </span>
                     <div class="flex flex-row">
-                        <span class="font-bold">
-                            {{ endHour }}
-                        </span>
+                        <span class="font-bold">{{ endTime.hours }}</span>
                         :
-                        <span class="font-semibold">
-                            {{ endMinute }}
-                        </span>
+                        <span class="font-semibold">{{ endTime.minutes }}</span>
                     </div>
                 </div>
             </div>
@@ -62,61 +54,28 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import type { ExtendedTrip } from '../../types/Trip';
-import { useSaveTrip } from '../../composables/useSaveTrip';
-import { useRouter } from 'vue-router';
+import { useSaveTrip, useTripSelection } from '../../composables/index';
+import { useTimeFormat } from '../../utils/useTimeFormat';
 import Skeleton from './Skeleton.vue';
 import PassengerInfo from './PassengerInfo.vue';
 
-const router = useRouter();
-const { setSelectedTrip, getIsLoading, savedTrip } = useSaveTrip();
+const { getIsLoading } = useSaveTrip();
+const { selectTrip } = useTripSelection();
 
-const props = defineProps({
-    trip: {
-        type: Object as () => ExtendedTrip,
-        required: true
-    }
-});
+const props = defineProps<{
+    trip: ExtendedTrip;
+}>();
 
-const startHour = computed(() => {
-    return props.trip.startTime.slice(0, 2);
-});
-const startMinute = computed(() => {
-    return props.trip.startTime.slice(3, 5);
-});
+const startTime = useTimeFormat(props.trip.startTime);
+const endTime = useTimeFormat(props.trip.endTime || '');
 
-const endHour = computed(() => {
-    return props.trip.endTime ? props.trip.endTime.slice(0, 2) : '';
-});
-const endMinute = computed(() => {
-    return props.trip.endTime ? props.trip.endTime.slice(3, 5) : '';
-});
-
-const segment = computed(() => {
-    return props.trip.segments[0] || { trainType: '', duration: '', transfers: 0 };
-});
-
-const secondSegment = computed(() => {
-    return props.trip.segments.length > 1 ? props.trip.segments[1] : null;
-});
+const segment = computed(() => props.trip.segments[0] || { trainType: '', duration: '', transfers: 0 });
+const secondSegment = computed(() => props.trip.segments.length > 1 ? props.trip.segments[1] : null);
 
 const transfersText = computed(() => {
     const transfers = segment.value.transfers;
-    if (transfers === 0) {
-        return 'Direkt';
-    } else if (transfers === 1) {
-        return '1 Umstieg';
-    } else {
-        return `${transfers} Umstiege`;
-    }
+    return transfers === 0 ? 'Direkt' :
+        transfers === 1 ? '1 Umstieg' :
+            `${transfers} Umstiege`;
 });
-
-function selectTrip() {
-    const tripWithPassenger = {
-        ...props.trip,
-        passenger: savedTrip.value?.passenger
-    };
-    setSelectedTrip(tripWithPassenger);
-    console.log(tripWithPassenger);
-    router.push('/trip-details');
-}
 </script>

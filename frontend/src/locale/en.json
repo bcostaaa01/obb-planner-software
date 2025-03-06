@@ -43,7 +43,8 @@
     "back": "Back",
     "price": "Price",
     "other-connections": "Other Connections",
-    "buy-tickets": "Buy Ticket Now"
+    "buy-tickets": "Buy Ticket Now",
+    "best-fare": "Best fare"
   },
   "cart": {
     "title": "Cart",
@@ -52,7 +53,8 @@
     "total": "Total",
     "proceed-to-checkout": "Proceed to Checkout",
     "who-is-going": "Who is going?",
-    "one-way-journey": "One-way journey"
+    "one-way-journey": "One-way journey",
+    "best-fare": "Best fare"
   },
   "not-found": {
     "title": "404: Page not found",

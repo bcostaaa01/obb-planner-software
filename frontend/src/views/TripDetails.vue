@@ -16,15 +16,16 @@
                 <div class="flex flex-col items-center justify-center w-1/2 z-10">
                     <SelectedTrip :date="formattedDate" :time="formattedTime"
                         :departure="selectedTrip?.startStation || ''" :destination="selectedTrip?.endStation || ''"
-                        v-if="!loading" />
+                        v-if="!loading" :checkbox-label="t('trip-details.best-fare')" />
 
                     <div v-if="selectedTrip" class="bg-white shadow-md p-4 w-full mb-4 mt-4">
                         <div class="flex justify-between items-center">
                             <div>
                                 <span class="text-gray-600">{{ t('trip-details.price') }}:</span>
-                                <span class="font-bold text-gray-800 ml-2">{{ selectedTrip.price.toFixed(2) }}€</span>
+                                <span class="font-bold text-gray-800 ml-2">{{ selectedTrip.price?.toFixed(2) }}€</span>
                             </div>
-                            <button class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 cursor-pointer"
+                            <button
+                                class="bg-red-600 text-white px-4 py-2 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 transition-all duration-300 cursor-pointer"
                                 @click="addToCart">
                                 {{ t('trip-details.buy-tickets') }}
                             </button>

@@ -30,79 +30,36 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { ref, computed, onMounted, watch } from 'vue';
+import { onMounted, watch } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faArrowsTurnToDots } from '@fortawesome/free-solid-svg-icons';
 import { useSaveTrip } from '../../composables/useSaveTrip';
-import { mockTrips } from '../../types/trips';
+import { useTripDirection } from '../../composables/useTripDirection';
+import { useTripFilters } from '../../composables/useTripFilters';
 
 const { t } = useI18n();
-const { savedTrip, setAvailableTrips, simulateLoading } = useSaveTrip();
+const { savedTrip } = useSaveTrip();
 
-defineProps({
-    date: {
-        type: String,
-        required: true
-    },
-    time: {
-        type: String,
-        required: true
-    },
-    checkboxLabel: {
-        type: String,
-        default: "Beste Fahrkarte"
-    }
-});
+const {
+    currentDeparture,
+    currentDestination,
+    toggleDirection,
+    updateAvailableTrips,
+    isLoading
+} = useTripDirection();
 
-const bestFareChecked = ref(false);
-const isReversed = ref(false);
-const filtersChecked = ref(false);
-const isLoading = ref(false);
+const {
+    bestFareChecked,
+    filtersChecked,
+    toggleBestFare,
+    toggleFilters
+} = useTripFilters();
 
-const currentDeparture = computed(() => {
-    if (!savedTrip.value) return '';
-    return isReversed.value ? savedTrip.value.endStation : savedTrip.value.startStation;
-});
-
-const currentDestination = computed(() => {
-    if (!savedTrip.value) return '';
-    return isReversed.value ? savedTrip.value.startStation : savedTrip.value.endStation;
-});
-
-function toggleDirection() {
-    isReversed.value = !isReversed.value;
-    simulateLoading(updateAvailableTrips);
-}
-
-function toggleBestFare() {
-    bestFareChecked.value = !bestFareChecked.value;
-}
-
-function toggleFilters() {
-    filtersChecked.value = !filtersChecked.value;
-}
-
-function updateAvailableTrips() {
-    if (!savedTrip.value) return;
-    isLoading.value = true;
-
-    const routeKey = isReversed.value
-        ? `${savedTrip.value.endStation}-${savedTrip.value.startStation}`
-        : `${savedTrip.value.startStation}-${savedTrip.value.endStation}`;
-
-    console.log('Current route key:', routeKey);
-    console.log('Available routes:', Object.keys(mockTrips));
-
-    if (mockTrips[routeKey]) {
-        console.log('Found trips for route:', routeKey);
-        setAvailableTrips(mockTrips[routeKey]);
-    } else {
-        console.log('No trips found for route:', routeKey);
-        setAvailableTrips([]);
-    }
-
-    isLoading.value = false;
-}
+defineProps<{
+    date: string;
+    time: string;
+    checkboxLabel: string;
+}>();
 
 watch(savedTrip, () => {
     updateAvailableTrips();
