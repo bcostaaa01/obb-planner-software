@@ -1,7 +1,7 @@
 <template>
     <div class="w-full mt-4">
         <div v-if="availableTrips.length > 0" class="flex flex-col gap-4">
-            <div class="text-gray-700 mb-4">
+            <div class="text-gray-700 mb-4 bg-white p-4">
                 {{ t('trip-planner.showing-trips-for') }} {{ formatDate(selectedDate) }}
             </div>
             <AvailableTrip v-for="trip in availableTrips" :key="trip.id" :trip="trip" />

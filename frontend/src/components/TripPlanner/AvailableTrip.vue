@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-row h-28 justify-between mb-2 p-4 border border-gray-100 bg-white shadow-sm transition-shadow hover:shadow-md cursor-pointer"
+    <div class="flex flex-row h-32 justify-between mb-2 p-4 border border-gray-100 bg-white shadow-sm transition-shadow hover:shadow-md cursor-pointer"
         @click="() => selectTrip(trip)">
         <Skeleton v-if="getIsLoading()" loading />
         <div v-else class="flex flex-row justify-between w-full">
