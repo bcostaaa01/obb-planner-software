@@ -16,6 +16,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import Datepicker from 'flowbite-datepicker/Datepicker';
+import moment from 'moment-timezone';
 
 const emit = defineEmits<{
     (e: 'update:modelValue', value: string): void
@@ -27,13 +28,15 @@ onMounted(() => {
     if (datepickerEl.value) {
         new Datepicker(datepickerEl.value, {
             format: 'yyyy-mm-dd',
-            autohide: true
+            autohide: true,
+            clearBtn: true,
+            todayBtn: true
         });
 
         datepickerEl.value.addEventListener('changeDate', (e: any) => {
             if (e.detail && e.detail.date) {
                 const date = e.detail.date;
-                const formattedDate = date.toISOString().split('T')[0];
+                const formattedDate = moment(date).tz('Europe/Vienna').format('YYYY-MM-DD');
                 emit('update:modelValue', formattedDate);
             }
         });
