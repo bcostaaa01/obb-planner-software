@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col bg-white shadow-md p-4 w-full">
-        <div class="flex justify-between items-center mb-6">
-            <h2 class="text-xl text-gray-900">{{ currentDeparture }} › {{ currentDestination }}</h2>
+        <div class="flex flex-col mb-6">
+            <h2 class="text-xl text-gray-900">{{ departure }} › {{ destination }}</h2>
         </div>
         <div class="flex justify-between items-center">
             <div class="flex items-center">
@@ -41,8 +41,6 @@ const { t } = useI18n();
 const { savedTrip } = useSaveTrip();
 
 const {
-    currentDeparture,
-    currentDestination,
     toggleDirection,
     updateAvailableTrips,
     isLoading
@@ -58,6 +56,8 @@ const {
 defineProps<{
     date: string;
     time: string;
+    departure: string;
+    destination: string;
     checkboxLabel: string;
 }>();
 

@@ -14,9 +14,10 @@
                 </div>
 
                 <div class="flex flex-col items-center justify-center w-1/2 z-10">
-                    <SelectedTrip :date="formattedDate" :time="formattedTime"
-                        :departure="selectedTrip?.startStation || ''" :destination="selectedTrip?.endStation || ''"
-                        v-if="!loading" :checkbox-label="t('trip-details.best-fare')" />
+                    <SelectedTrip :date="displayDate" :time="displayTime"
+                        :departure="selectedTrip?.startStation || startStation"
+                        :destination="selectedTrip?.endStation || endStation" v-if="!loading"
+                        :checkbox-label="t('trip-details.best-fare')" />
 
                     <div v-if="selectedTrip" class="bg-white shadow-md p-4 w-full mb-4 mt-4">
                         <div class="flex justify-between items-center">
@@ -63,20 +64,31 @@ import Skeleton from '../components/TripPlanner/Skeleton.vue';
 import { useTripsStore } from '../stores/Trips.store';
 
 const { t } = useI18n();
-const { selectedTrip, availableTrips } = useSaveTrip();
+const { selectedTrip, availableTrips, savedTrip } = useSaveTrip();
 const loading = ref(false);
 const { addTripToCart } = useTripsStore();
 
-const formattedDate = computed(() => {
-    if (!selectedTrip.value) return '';
-    const today = new Date();
-    return today.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
-});
+const formDate = ref(localStorage.getItem('formDate') || '');
+const formTime = ref(localStorage.getItem('formTime') || '');
 
-const formattedTime = computed(() => {
-    if (!selectedTrip.value) return '';
-    return selectedTrip.value.startTime;
-});
+const startStation = computed(() => savedTrip.value?.startStation || '');
+const endStation = computed(() => savedTrip.value?.endStation || '');
+
+const formatDate = (dateString: string) => {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    return date.toLocaleDateString('de-DE', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+    });
+};
+
+const displayDate = computed(() =>
+    formatDate(formDate.value)
+);
+
+const displayTime = computed(() => formTime.value);
 
 const addToCart = () => {
     if (selectedTrip.value) {

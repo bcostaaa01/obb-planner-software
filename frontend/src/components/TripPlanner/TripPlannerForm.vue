@@ -63,7 +63,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue';
+import { ref, reactive, watch } from 'vue';
 import { FwbButton, FwbSelect } from 'flowbite-vue';
 import { useI18n } from 'vue-i18n';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -172,6 +172,7 @@ const saveTripDetails = () => {
     }
 
     const formattedDate = selectedDate.value;
+    const formattedTime = startTime.value;
 
     const routeKey = `${startStation.value}-${endStation.value}`;
 
@@ -189,11 +190,19 @@ const saveTripDetails = () => {
     saveTrip({
         startStation: startStation.value,
         endStation: endStation.value,
-        startTime: startTime.value,
+        startTime: formattedTime,
         date: formattedDate,
         discount: selectedPassenger.discount as DiscountType,
         passenger: selectedPassenger
     });
+
+    localStorage.setItem('startStation', startStation.value);
+    localStorage.setItem('endStation', endStation.value);
+    localStorage.setItem('formDate', formattedDate);
+    localStorage.setItem('formTime', formattedTime);
+    localStorage.setItem('passengerType', selectedPassenger.type);
+    localStorage.setItem('passengerCount', selectedPassenger.count.toString());
+    localStorage.setItem('passengerDiscount', selectedPassenger.discount);
 
     router.push('/trip-details');
 };
@@ -224,4 +233,18 @@ const stations = ref([
         value: "Salzburg Hbf"
     }
 ]);
+
+const emit = defineEmits<{
+    (e: 'update:selectedDate', value: string): void;
+    (e: 'update:selectedTime', value: string): void;
+    (e: 'update:startStation', value: string): void;
+    (e: 'update:endStation', value: string): void;
+}>();
+
+watch([selectedDate, startTime, startStation, endStation], ([newDate, newTime, newStart, newEnd]) => {
+    emit('update:selectedDate', newDate);
+    emit('update:selectedTime', newTime);
+    emit('update:startStation', newStart);
+    emit('update:endStation', newEnd);
+});
 </script>
