@@ -9,7 +9,7 @@
         </div>
         <input ref="datepickerEl" type="text"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Select date" />
+            :placeholder="t('trip-planner.select-date')" />
     </div>
 </template>
 
@@ -17,7 +17,9 @@
 import { ref, onMounted } from 'vue';
 import Datepicker from 'flowbite-datepicker/Datepicker';
 import moment from 'moment-timezone';
+import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n();
 const emit = defineEmits<{
     (e: 'update:modelValue', value: string): void
 }>();
@@ -29,8 +31,7 @@ onMounted(() => {
         new Datepicker(datepickerEl.value, {
             format: 'yyyy-mm-dd',
             autohide: true,
-            clearBtn: true,
-            todayBtn: true
+            todayHighlight: true,
         });
 
         datepickerEl.value.addEventListener('changeDate', (e: any) => {
