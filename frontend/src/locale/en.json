@@ -24,7 +24,8 @@
     "passenger-type": "Passenger Type",
     "passenger-count": "Passenger Count",
     "passenger-discount": "Passenger Discount",
-    "departure-date": "Departure Date"
+    "departure-date": "Departure Date",
+    "select-date": "Select Date"
   },
   "passenger": {
     "types": {

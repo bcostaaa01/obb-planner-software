@@ -27,6 +27,7 @@
     "passenger-discount": "Passagierrabatt",
     "passenger-count": "Passagieranzahl",
     "departure-date": "Abfahrtsdatum",
+    "select-date": "Wähle ein Datum",
     "no-trips-available": "Keine Verbindungen für diese Route verfügbar.",
     "no-trips-on-date": "Keine Verbindungen für dieses Datum verfügbar.",
     "showing-trips-for": "Verbindungen für",
