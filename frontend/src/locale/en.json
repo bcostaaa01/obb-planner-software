@@ -58,7 +58,7 @@
   },
   "not-found": {
     "title": "404: Page not found",
-    "message": "Page not found. Please check the URL or go back to the home page."
+    "message": "Please check the URL or go back to the home page."
   },
   "footer": {
     "home": "Home",
