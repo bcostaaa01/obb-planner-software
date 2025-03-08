@@ -5,6 +5,9 @@
         <div v-else class="flex flex-row justify-between w-full">
             <div class="flex flex-col pr-4 mr-4 relative">
                 <span class="text-gray-800">
+                    {{ trip.date }}
+                </span>
+                <span class="text-gray-800">
                     {{ trip.startStation }}
                 </span>
                 <div class="flex flex-row">

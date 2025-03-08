@@ -23,6 +23,10 @@
                 <span class="text-gray-800 font-bold mb-2">{{ t('trip-planner.departure-time') }}</span>
                 <input type="time" v-model="startTime" class="h-10 px-2 border border-gray-300 rounded text-gray-800" />
             </div>
+            <div class="flex flex-col ml-6 mt-10">
+                <span class="text-gray-800 font-bold mb-2">{{ t('trip-planner.departure-date') }}</span>
+                <Datepicker v-model="selectedDate" @update:model-value="updateSelectedDate" />
+            </div>
         </div>
 
         <div class="flex flex-row mt-6">
@@ -69,12 +73,14 @@ import { useRouter } from 'vue-router';
 import { mockTrips } from '../../mocks/trips';
 import type { ValidationStatus } from 'flowbite-vue/components/FwbSelect/types.js';
 import type { Passenger, PassengerType, DiscountType } from '../../types/Passenger';
+import Datepicker from '../shared/Date/Datepicker.vue';
 
 const { t } = useI18n();
 
 const startStation = ref("");
 const endStation = ref("");
 const startTime = ref(new Date().toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }));
+const selectedDate = ref("");
 const validationStatus = ref<ValidationStatus | undefined>(undefined);
 const showError = ref(false);
 const errorMessage = ref("");
@@ -127,21 +133,36 @@ const updateValidationStatus = () => {
     }
 };
 
+const updateSelectedDate = (value: string) => {
+    console.log("Date selected:", value);
+    selectedDate.value = value;
+};
+
 const validateForm = () => {
     if (!startStation.value || !endStation.value) {
         showError.value = true;
         errorMessage.value = t('trip-planner.please-select-stations');
         return false;
-    } else if (startStation.value === endStation.value) {
+    }
+
+    if (!selectedDate.value) {
+        showError.value = true;
+        errorMessage.value = t('trip-planner.please-select-date');
+        return false;
+    }
+
+    if (startStation.value === endStation.value) {
         showError.value = true;
         errorMessage.value = t('trip-planner.same-station-error');
         return false;
-    } else if (selectedPassenger.count < 1) {
+    }
+
+    if (selectedPassenger.count < 1) {
         showError.value = true;
         errorMessage.value = t('trip-planner.please-select-passenger');
         return false;
     }
-    showError.value = false;
+
     return true;
 };
 
@@ -150,22 +171,29 @@ const saveTripDetails = () => {
         return;
     }
 
+    const formattedDate = selectedDate.value;
+
+    const routeKey = `${startStation.value}-${endStation.value}`;
+
+    const dateTrips = mockTrips[selectedDate.value];
+    if (dateTrips && dateTrips[routeKey]) {
+        setAvailableTrips(dateTrips[routeKey]);
+        showError.value = false;
+        errorMessage.value = "";
+    } else {
+        setAvailableTrips([]);
+        showError.value = true;
+        errorMessage.value = t('trip-planner.no-trips-available');
+    }
+
     saveTrip({
         startStation: startStation.value,
         endStation: endStation.value,
         startTime: startTime.value,
+        date: formattedDate,
         discount: selectedPassenger.discount as DiscountType,
         passenger: selectedPassenger
     });
-
-    console.log(selectedPassenger);
-
-    const routeKey = `${startStation.value}-${endStation.value}`;
-    if (mockTrips[routeKey]) {
-        setAvailableTrips(mockTrips[routeKey]);
-    } else {
-        setAvailableTrips([]);
-    }
 
     router.push('/trip-details');
 };

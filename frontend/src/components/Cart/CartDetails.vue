@@ -13,7 +13,8 @@
             <SelectedTripDetails v-for="trip in cart" :key="trip.id" :trip="trip" />
             <div class="flex justify-between items-center mt-6 pt-6 border-t border-gray-200">
                 <span class="text-xl font-bold text-gray-800">{{ t('cart.total') }}: {{ totalPrice.toFixed(2) }}€</span>
-                <button class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 text-lg cursor-pointer">
+                <button @click="addTripToCheckout"
+                    class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 text-lg cursor-pointer">
                     {{ t('cart.proceed-to-checkout') }}
                 </button>
             </div>
@@ -29,17 +30,33 @@ import { useRouter } from 'vue-router';
 import { useTripsStore } from '../../stores/Trips.store';
 import SelectedTripDetails from '../TripPlanner/SelectedTripDetails.vue';
 import { useI18n } from 'vue-i18n';
+import { useSaveTrip } from '../../composables/useSaveTrip';
 
 const { t } = useI18n();
 const { getCart } = useTripsStore();
-
+const { addTripToCheckoutDB } = useSaveTrip();
 const cart = computed(() => getCart());
 const cartIsEmpty = computed(() => cart.value.length === 0);
-const totalPrice = computed(() => cart.value.reduce((sum, trip) => sum + trip.price, 0));
+const totalPrice = computed(() => cart.value.reduce((sum, trip) => sum + (trip.price || 0), 0));
 
 const router = useRouter();
 
 const goBack = () => {
     router.push('/');
+};
+
+const addTripToCheckout = async () => {
+    try {
+        for (const trip of cart.value) {
+            console.log(trip);
+            await addTripToCheckoutDB({
+                ...trip,
+                date: trip.date,
+            });
+        }
+        router.push('/checkout');
+    } catch (error) {
+        console.error('Error during checkout:', error);
+    }
 };
 </script>

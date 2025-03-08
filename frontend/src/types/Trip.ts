@@ -11,11 +11,12 @@ export interface Trip {
   passenger?: Passenger;
   segments: TripSegment[];
   discount: DiscountType;
+  date: string;
 }
 
 export type SearchedTrip = Pick<
   Trip,
-  "startStation" | "endStation" | "startTime" | "passenger" | "discount"
+  "startStation" | "endStation" | "startTime" | "passenger" | "discount" | "date"
 >;
 
 export interface TripSegment {

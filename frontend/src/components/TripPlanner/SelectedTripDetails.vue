@@ -2,6 +2,9 @@
     <div class="flex flex-row justify-between p-4 bg-white shadow-sm">
         <div @click="goBack" class="flex flex-row cursor-pointer hover:bg-gray-100 transition-colors duration-200">
             <div class="flex flex-col pr-4 mr-4 relative">
+                <span class="text-gray-800">
+                    {{ trip.date }}
+                </span>
                 <TimeDisplay :time="trip.startTime" />
                 <TimeDisplay :time="trip.endTime || ''" />
             </div>

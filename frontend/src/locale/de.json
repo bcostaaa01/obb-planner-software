@@ -25,7 +25,12 @@
     "same-station-error": "Die Start- und Endstation dürfen nicht die gleiche Station sein.",
     "passenger-type": "Passagiertyp",
     "passenger-discount": "Passagierrabatt",
-    "passenger-count": "Passagieranzahl"
+    "passenger-count": "Passagieranzahl",
+    "departure-date": "Abfahrtsdatum",
+    "no-trips-available": "Keine Verbindungen für diese Route verfügbar.",
+    "no-trips-on-date": "Keine Verbindungen für dieses Datum verfügbar.",
+    "showing-trips-for": "Verbindungen für",
+    "no-trips-available-for-date": "Keine Verbindungen verfügbar für {date}"
   },
   "passenger": {
     "types": {

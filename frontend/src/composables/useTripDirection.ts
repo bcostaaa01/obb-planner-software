@@ -1,7 +1,7 @@
 import { ref, computed } from "vue";
 import type { Trip } from "../types/Trip";
 import { useSaveTrip } from "./useSaveTrip";
-import { mockTrips } from "../types/trips";
+import { mockTrips } from "../mocks/trips";
 
 export function useTripDirection() {
   const { savedTrip, setAvailableTrips, simulateLoading } = useSaveTrip();
@@ -35,8 +35,11 @@ export function useTripDirection() {
       ? `${savedTrip.value.endStation}-${savedTrip.value.startStation}`
       : `${savedTrip.value.startStation}-${savedTrip.value.endStation}`;
 
-    if (mockTrips[routeKey]) {
-      setAvailableTrips(mockTrips[routeKey]);
+    const date = savedTrip.value.date;
+
+    // Check if we have trips for this date
+    if (mockTrips[date] && mockTrips[date][routeKey]) {
+      setAvailableTrips(mockTrips[date][routeKey]);
     } else {
       setAvailableTrips([]);
     }

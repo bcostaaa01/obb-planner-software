@@ -23,7 +23,8 @@
     "same-station-error": "The start and end station cannot be the same.",
     "passenger-type": "Passenger Type",
     "passenger-count": "Passenger Count",
-    "passenger-discount": "Passenger Discount"
+    "passenger-discount": "Passenger Discount",
+    "departure-date": "Departure Date"
   },
   "passenger": {
     "types": {
