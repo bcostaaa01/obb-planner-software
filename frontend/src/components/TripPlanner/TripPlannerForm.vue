@@ -202,7 +202,7 @@ const saveTripDetails = () => {
     localStorage.setItem('formTime', formattedTime);
     localStorage.setItem('passengerType', selectedPassenger.type);
     localStorage.setItem('passengerCount', selectedPassenger.count.toString());
-    localStorage.setItem('passengerDiscount', selectedPassenger.discount);
+    localStorage.setItem('passengerDiscount', selectedPassenger.discount as DiscountType);
 
     router.push('/trip-details');
 };
