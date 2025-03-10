@@ -9,7 +9,7 @@
                 <TimeDisplay :time="trip.endTime || ''" />
             </div>
             <div class="flex flex-col pl-2 ml-4 justify-between">
-                <StationDisplay :station-name="trip.startStation" />
+                <StationDisplay :station-name="trip.startStation" class="mt-7" />
                 <StationDisplay :station-name="trip.endStation" />
             </div>
         </div>
