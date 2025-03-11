@@ -58,6 +58,29 @@
     "one-way-journey": "One-way journey",
     "best-fare": "Best fare"
   },
+  "checkout": {
+    "title": "Checkout",
+    "customer-details": {
+      "title": "Customer Details",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address",
+      "state": "State",
+      "zip": "Zip",
+      "city": "City",
+      "country": "Country"
+    },
+    "payment-method": {
+      "title": "Payment Method",
+      "card-holder": "Card Holder",
+      "card-number": "Card Number",
+      "validity-date": "Validity Date",
+      "cvv": "CVV"
+    },
+    "next": "Next",
+    "confirmation": "Confirmation"
+  },
   "not-found": {
     "title": "404: Page not found",
     "message": "Please check the URL or go back to the home page."

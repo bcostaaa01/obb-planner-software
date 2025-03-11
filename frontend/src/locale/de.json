@@ -63,6 +63,29 @@
     "who-is-going": "Wer geht mit?",
     "one-way-journey": "Einfache Fahrt"
   },
+  "checkout": {
+    "title": "Checkout",
+    "customer-details": {
+      "title": "Kundeninformationen",
+      "name": "Name",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "address": "Adresse",
+      "state": "Bundesland",
+      "zip": "PLZ",
+      "city": "Ort",
+      "country": "Land"
+    },
+    "payment-method": {
+      "title": "Zahlungsmethode",
+      "card-holder": "Karteninhaber",
+      "card-number": "Kartennummer",
+      "validity-date": "Ablaufdatum",
+      "cvv": "CVV"
+    },
+    "next": "Weiter",
+    "confirmation": "Bestätigung"
+  },
   "not-found": {
     "title": "404: Seite nicht gefunden",
     "message": "Bitte überprüfen Sie die URL oder gehen Sie zurück zur Startseite."
