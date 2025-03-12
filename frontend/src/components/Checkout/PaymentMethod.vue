@@ -63,7 +63,7 @@ const selectPaymentMethod = (name: string) => {
 const classes = (name: string) => {
     return {
         'border-2 border-purple-300 bg-indigo-100 text-indigo-900 ring-purple-300': selectedMethod.value === name,
-        'border-gray-300': selectedMethod.value !== name
+        'border-gray-300 hover:bg-gray-200': selectedMethod.value !== name
     }
 }
 
