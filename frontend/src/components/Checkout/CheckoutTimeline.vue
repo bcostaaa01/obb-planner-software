@@ -15,7 +15,7 @@
         </div>
 
         <div class="w-full">
-            <component :is="currentComponent" />
+            <component :is="currentComponent" :goToNextStep="goToNextStep" />
         </div>
     </div>
 </template>
@@ -35,6 +35,7 @@ const steps = [
 ];
 
 const currentStep = ref(0);
+
 const currentComponent = computed(() => {
     switch (currentStep.value) {
         case 0:
@@ -47,6 +48,12 @@ const currentComponent = computed(() => {
             return CustomerDetails;
     }
 });
+
+const goToNextStep = () => {
+    if (currentStep.value < steps.length - 1) {
+        currentStep.value++;
+    }
+};
 
 const stepClass = (index: number) => {
     const step = steps[index];

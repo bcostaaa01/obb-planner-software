@@ -16,6 +16,13 @@
                     </label>
                 </div>
             </div>
+            <button type="submit" @click="handleSubmit"
+                class="mt-4 bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200 w-64">
+                <span v-if="loading">
+                    <FontAwesomeIcon :icon="faCircleNotch" class="animate-spin" />
+                </span>
+                <span v-else>{{ t('checkout.next') }}</span>
+            </button>
         </div>
         <!-- <div class="flex flex-col mt-4">
             <form class="flex flex-col gap-2">
@@ -67,10 +74,15 @@ const classes = (name: string) => {
     }
 }
 
+const props = defineProps<{
+    goToNextStep: () => void;
+}>();
+
 const handleSubmit = () => {
     loading.value = true;
     setTimeout(() => {
         loading.value = false;
+        props.goToNextStep();
     }, 2000);
 };
 </script>
