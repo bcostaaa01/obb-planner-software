@@ -34,7 +34,7 @@ import { useSaveTrip } from '../../composables/useSaveTrip';
 
 const { t } = useI18n();
 const { getCart } = useTripsStore();
-const { addTripToCheckoutDB } = useSaveTrip();
+// const { addTripToCheckoutDB } = useSaveTrip();
 const cart = computed(() => getCart());
 const cartIsEmpty = computed(() => cart.value.length === 0);
 const totalPrice = computed(() => cart.value.reduce((sum, trip) => sum + (trip.price || 0), 0));
@@ -47,13 +47,13 @@ const goBack = () => {
 
 const addTripToCheckout = async () => {
     try {
-        for (const trip of cart.value) {
-            console.log(trip);
-            await addTripToCheckoutDB({
-                ...trip,
-                date: trip.date,
-            });
-        }
+        // for (const trip of cart.value) {
+        //     console.log(trip);
+        //     await addTripToCheckoutDB({
+        //         ...trip,
+        //         date: trip.date,
+        //     });
+        // }
         router.push('/checkout');
     } catch (error) {
         console.error('Error during checkout:', error);
