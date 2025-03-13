@@ -25,7 +25,12 @@
     "passenger-count": "Passenger Count",
     "passenger-discount": "Passenger Discount",
     "departure-date": "Departure Date",
-    "select-date": "Select Date"
+    "select-date": "Select Date",
+    "accessibility": {
+      "wheelchair": "Wheelchair",
+      "low-floor-access": "Low Floor Access",
+      "assistance-available": "Assistance Available"
+    }
   },
   "passenger": {
     "types": {
@@ -79,7 +84,9 @@
       "cvv": "CVV"
     },
     "next": "Next",
-    "confirmation": "Confirmation"
+    "confirmation": "Confirmation",
+    "payment-success": "Payment successful!",
+    "ticket-sent-to-email": "The tickets have been sent to your email address."
   },
   "not-found": {
     "title": "404: Page not found",

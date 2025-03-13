@@ -31,7 +31,12 @@
     "no-trips-available": "Keine Verbindungen für diese Route verfügbar.",
     "no-trips-on-date": "Keine Verbindungen für dieses Datum verfügbar.",
     "showing-trips-for": "Verbindungen für",
-    "no-trips-available-for-date": "Keine Verbindungen verfügbar für {date}"
+    "no-trips-available-for-date": "Keine Verbindungen verfügbar für {date}",
+    "accessibility": {
+      "wheelchair": "Rollstuhl",
+      "low-floor-access": "Niedriges Bodenprofil",
+      "assistance-available": "Hilfe verfügbar"
+    }
   },
   "passenger": {
     "types": {
@@ -84,7 +89,9 @@
       "cvv": "CVV"
     },
     "next": "Weiter",
-    "confirmation": "Bestätigung"
+    "confirmation": "Bestätigung",
+    "payment-success": "Zahlung erfolgreich!",
+    "ticket-sent-to-email": "Die Tickets wurden an Ihre E-Mail-Adresse gesendet."
   },
   "not-found": {
     "title": "404: Seite nicht gefunden",

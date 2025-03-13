@@ -1,4 +1,4 @@
-import type { ExtendedTrip } from "../types/Trip";
+import type { Accessibility } from "../types/Trip";
 
 export interface TripSegment {
   trainType: string;
@@ -16,6 +16,7 @@ export interface ExtendedTrip extends TripSegment {
   date: string;
   segments: TripSegment[];
   discount: string;
+  accessibility: Accessibility;
 }
 
 type TripsByDate = {
@@ -48,6 +49,11 @@ export const mockTrips: TripsByDate = {
           },
         ],
         discount: "without_discounts",
+        accessibility: {
+          wheelchair: false,
+          lowFloorAccess: true,
+          assistanceAvailable: true,
+        },
       },
     ],
   },
@@ -69,6 +75,11 @@ export const mockTrips: TripsByDate = {
           },
         ],
         discount: "without_discounts",
+        accessibility: {
+          wheelchair: false,
+          lowFloorAccess: true,
+          assistanceAvailable: true,
+        },
       },
     ],
   },

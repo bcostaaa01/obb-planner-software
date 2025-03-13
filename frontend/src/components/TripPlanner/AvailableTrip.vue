@@ -24,6 +24,10 @@
                     <div class="flex flex-col mt-1">
                         <span class="text-gray-800 text-xs text-left ml-2">{{ segment.duration }}</span>
                         <span class="text-gray-800 text-xs text-left ml-2">{{ transfersText }}</span>
+                        <!-- accessibility information -->
+                        <span class="text-gray-800 text-xs text-left ml-2">
+                            {{ accessibilityText }}
+                        </span>
                     </div>
                 </div>
                 <div v-if="trip.segments.length > 1" class="absolute top-0 right-0 w-2/4 flex flex-col">
@@ -61,7 +65,9 @@ import { useSaveTrip, useTripSelection } from '../../composables/index';
 import { useTimeFormat } from '../../utils/useTimeFormat';
 import Skeleton from './Skeleton.vue';
 import PassengerInfo from './PassengerInfo.vue';
+import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n();
 const { getIsLoading } = useSaveTrip();
 const { selectTrip } = useTripSelection();
 
@@ -80,5 +86,19 @@ const transfersText = computed(() => {
     return transfers === 0 ? 'Direkt' :
         transfers === 1 ? '1 Umstieg' :
             `${transfers} Umstiege`;
+});
+
+const accessibilityText = computed(() => {
+    const accessibility = props.trip.accessibility;
+    const accessibilityOptions = [
+        { condition: accessibility.wheelchair, text: t('trip-planner.accessibility.wheelchair') },
+        { condition: accessibility.lowFloorAccess, text: t('trip-planner.accessibility.low-floor-access') },
+        { condition: accessibility.assistanceAvailable, text: t('trip-planner.accessibility.assistance-available') }
+    ];
+    
+    return accessibilityOptions
+        .filter(option => option.condition)
+        .map(option => option.text)
+        .join(', ');
 });
 </script>

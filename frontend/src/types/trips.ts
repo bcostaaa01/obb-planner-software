@@ -26,6 +26,13 @@ export const mockTrips: Record<string, ExtendedTrip[]> = {
           transfers: 0,
         },
       ],
+      date: "2025-03-21",
+      discount: "without_discounts",
+      accessibility: {
+        wheelchair: true,
+        lowFloorAccess: true,
+        assistanceAvailable: true,
+      },
     },
     {
       id: 2,
@@ -41,6 +48,13 @@ export const mockTrips: Record<string, ExtendedTrip[]> = {
           transfers: 0,
         },
       ],
+      date: "2025-03-21",
+      discount: "family_card",
+      accessibility: {
+        wheelchair: false,
+        lowFloorAccess: true,
+        assistanceAvailable: true,
+      },
     },
     {
       id: 3,
@@ -56,6 +70,13 @@ export const mockTrips: Record<string, ExtendedTrip[]> = {
           transfers: 1,
         },
       ],
+      date: "2025-03-21",
+      discount: "without_discounts",
+      accessibility: {
+        wheelchair: false,
+        lowFloorAccess: true,
+        assistanceAvailable: true,
+      },
     },
   ],
 
@@ -74,6 +95,13 @@ export const mockTrips: Record<string, ExtendedTrip[]> = {
           transfers: 0,
         },
       ],
+      date: "2025-03-21",
+      discount: "without_discounts",
+      accessibility: {
+        wheelchair: false,
+        lowFloorAccess: true,
+        assistanceAvailable: true,
+      },
     },
     {
       id: 5,
@@ -94,6 +122,13 @@ export const mockTrips: Record<string, ExtendedTrip[]> = {
           transfers: 1,
         },
       ],
+      date: "2025-03-21",
+      discount: "student_card",
+      accessibility: {
+        wheelchair: false,
+        lowFloorAccess: true,
+        assistanceAvailable: true,
+      },
     },
   ],
 
@@ -117,6 +152,13 @@ export const mockTrips: Record<string, ExtendedTrip[]> = {
           transfers: 0,
         },
       ],
+      date: "2025-03-21",
+      discount: "without_discounts",
+      accessibility: {
+        wheelchair: false,
+        lowFloorAccess: true,
+        assistanceAvailable: true,
+      },
     },
   ],
 };

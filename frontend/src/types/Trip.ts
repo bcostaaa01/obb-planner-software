@@ -12,12 +12,19 @@ export interface Trip {
   segments: TripSegment[];
   discount: DiscountType;
   date: string;
+  accessibility: Accessibility;
 }
 
 export type SearchedTrip = Pick<
   Trip,
   "startStation" | "endStation" | "startTime" | "passenger" | "discount" | "date"
 >;
+
+export type Accessibility = {
+  wheelchair: boolean;
+  lowFloorAccess: boolean;
+  assistanceAvailable: boolean;
+};
 
 export interface TripSegment {
   trainType: string;
