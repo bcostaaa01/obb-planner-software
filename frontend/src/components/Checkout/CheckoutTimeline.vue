@@ -51,6 +51,7 @@ const currentComponent = computed(() => {
 
 const goToNextStep = () => {
     if (currentStep.value < steps.length - 1) {
+        steps[currentStep.value].completed = true;
         currentStep.value++;
     }
 };
