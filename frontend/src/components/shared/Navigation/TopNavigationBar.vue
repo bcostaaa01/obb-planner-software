@@ -5,6 +5,7 @@
                 class="h-6" />
         </router-link>
         <div class="flex justify-end items-center gap-2">
+            <LanguageSwitch />
             <CartButton :price="10" />
         </div>
     </div>
@@ -13,6 +14,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import CartButton from '../../Cart/CartButton.vue';
+import LanguageSwitch from '../../LanguageSwitcher/LanguageSwitch.vue';
 
 const { t } = useI18n();
 </script>
