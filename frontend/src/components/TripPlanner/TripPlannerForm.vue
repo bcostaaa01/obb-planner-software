@@ -74,6 +74,8 @@ import { mockTrips } from '../../mocks/trips';
 import type { ValidationStatus } from 'flowbite-vue/components/FwbSelect/types.js';
 import type { Passenger, PassengerType, DiscountType } from '../../types/Passenger';
 import Datepicker from '../shared/Date/Datepicker.vue';
+import i18n from '../../composables/i18n';
+import type { ExtendedTrip } from '../../types/Trip';
 
 const { t } = useI18n();
 
@@ -178,7 +180,7 @@ const saveTripDetails = () => {
 
     const dateTrips = mockTrips[selectedDate.value];
     if (dateTrips && dateTrips[routeKey]) {
-        setAvailableTrips(dateTrips[routeKey]);
+        setAvailableTrips(dateTrips[routeKey] as ExtendedTrip[]);
         showError.value = false;
         errorMessage.value = "";
     } else {
@@ -204,7 +206,7 @@ const saveTripDetails = () => {
     localStorage.setItem('passengerCount', selectedPassenger.count.toString());
     localStorage.setItem('passengerDiscount', selectedPassenger.discount as DiscountType);
 
-    router.push('/trip-details');
+    router.push({ path: `/${i18n.global.locale}/trip-details` });
 };
 
 const stations = ref([

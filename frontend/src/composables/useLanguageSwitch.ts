@@ -2,6 +2,7 @@ import { ref } from "vue";
 import { useI18n } from "vue-i18n";
 import enFlag from "../assets/en.png";
 import deFlag from "../assets/de.png";
+import router from "../router";
 
 export function useLanguageSwitch() {
   const { locale } = useI18n();
@@ -33,6 +34,7 @@ export function useLanguageSwitch() {
     currentLanguage.value =
       languages.find((lang) => lang.code === code) || languages[0];
     dropdownOpen.value = false;
+    router.push({ params: { locale: code } });
   };
 
   return {
