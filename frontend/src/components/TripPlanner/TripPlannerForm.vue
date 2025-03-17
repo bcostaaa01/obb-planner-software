@@ -76,6 +76,7 @@ import type { Passenger, PassengerType, DiscountType } from '../../types/Passeng
 import Datepicker from '../shared/Date/Datepicker.vue';
 import i18n from '../../composables/i18n';
 import type { ExtendedTrip } from '../../types/Trip';
+import { useValidateInputs } from '../../composables/useValidateInputs';
 
 const { t } = useI18n();
 
@@ -140,36 +141,16 @@ const updateSelectedDate = (value: string) => {
     selectedDate.value = value;
 };
 
+const { errors, validateTripInputs } = useValidateInputs();
+
 const validateForm = () => {
-    if (!startStation.value || !endStation.value) {
-        showError.value = true;
-        errorMessage.value = t('trip-planner.please-select-stations');
-        return false;
-    }
-
-    if (!selectedDate.value) {
-        showError.value = true;
-        errorMessage.value = t('trip-planner.please-select-date');
-        return false;
-    }
-
-    if (startStation.value === endStation.value) {
-        showError.value = true;
-        errorMessage.value = t('trip-planner.same-station-error');
-        return false;
-    }
-
-    if (selectedPassenger.count < 1) {
-        showError.value = true;
-        errorMessage.value = t('trip-planner.please-select-passenger');
-        return false;
-    }
-
-    return true;
+    return validateTripInputs(startStation.value, endStation.value, selectedDate.value, selectedPassenger.count);
 };
 
 const saveTripDetails = () => {
     if (!validateForm()) {
+        showError.value = true;
+        errorMessage.value = errors.value.startStation || errors.value.endStation || errors.value.selectedDate || errors.value.passengerCount;
         return;
     }
 
