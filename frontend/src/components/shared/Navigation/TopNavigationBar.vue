@@ -7,6 +7,7 @@
         <div class="flex justify-end items-center gap-2">
             <LanguageSwitch />
             <CartButton :price="10" />
+            <Avatar />
         </div>
     </div>
 </template>
@@ -15,6 +16,7 @@
 import { useI18n } from 'vue-i18n';
 import CartButton from '../../Cart/CartButton.vue';
 import LanguageSwitch from '../../LanguageSwitcher/LanguageSwitch.vue';
+import Avatar from '../../Auth/Avatar.vue';
 
 const { t } = useI18n();
 </script>

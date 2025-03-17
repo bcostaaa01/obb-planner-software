@@ -5,6 +5,19 @@
   "nav-bar": {
     "title": "Reiseplanner"
   },
+  "auth": {
+    "login": "Anmelden",
+    "register": "Registrieren",
+    "logout": "Abmelden",
+    "welcome": "Willkommen",
+    "switch-to-register": "Zum Registrieren wechseln",
+    "switch-to-login": "Zum Anmelden wechseln",
+    "validation": {
+      "email": "E-Mail ist erforderlich.",
+      "password": "Passwort ist erforderlich.",
+      "firstName": "Vorname ist erforderlich."
+    }
+  },
   "trip-planner": {
     "heading": "Fahrplan & Tickets",
     "departure": "Abfahrtsstation",
@@ -19,6 +32,7 @@
     "return": "Rück",
     "available-connections": "Verfügbare Verbindungen",
     "no-trips": "Es gibt keine Verbindungen für diese Route.",
+    "please-select-date": "Bitte wählen Sie ein Datum.",
     "please-select-stations": "Bitte wählen Sie beide Stationen.",
     "please-select-passenger": "Bitte wählen Sie einen Passagier.",
     "no-alternative-trips": "Es gibt keine alternative Verbindungen für diese Route.",

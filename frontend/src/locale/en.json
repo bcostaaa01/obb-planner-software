@@ -5,6 +5,19 @@
   "nav-bar": {
     "title": "Planner"
   },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "welcome": "Welcome",
+    "switch-to-register": "Switch to Register",
+    "switch-to-login": "Switch to Login",
+    "validation": {
+      "email": "Email is required.",
+      "password": "Password is required.",
+      "firstName": "First name is required."
+    }
+  },
   "trip-planner": {
     "heading": "Trip Plan & Tickets",
     "departure": "Departure Station",
@@ -19,6 +32,7 @@
     "return": "Return",
     "available-connections": "Available Connections",
     "no-trips": "No trips found for this route.",
+    "please-select-date": "Please select a date.",
     "please-select-stations": "Please select both stations.",
     "please-select-passenger": "Please select a passenger.",
     "no-alternative-trips": "No alternative trips found for this route.",
