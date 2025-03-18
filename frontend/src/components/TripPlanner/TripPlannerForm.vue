@@ -8,14 +8,14 @@
             <div class="flex flex-col mt-10">
                 <span class="text-gray-800 font-bold mb-2">{{ t('trip-planner.departure') }}</span>
                 <fwb-select id="abfahrt" :model-value="startStation" required size="sm" type="multiselect" class="h-10"
-                    placeholder="Wähle eine Abfahrtsstation" :options="stations"
+                    :placeholder="t('trip-planner.select-departure')" :options="stations"
                     @update:model-value="(value) => { startStation = value; updateValidationStatus(); }"
                     :validation-status="showError ? validationStatus : undefined" />
             </div>
             <div class="flex flex-col ml-6 mt-10">
                 <span class="text-gray-800 font-bold mb-2">{{ t('trip-planner.destination') }}</span>
                 <fwb-select id="ankunft" :model-value="endStation" required size="sm" type="multiselect" class="h-10"
-                    placeholder="Wähle eine Ankunftsstation" :options="stations"
+                    :placeholder="t('trip-planner.select-destination')" :options="stations"
                     @update:model-value="(value) => { endStation = value; updateValidationStatus(); }"
                     :validation-status="showError ? validationStatus : undefined" />
             </div>

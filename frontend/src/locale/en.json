@@ -50,7 +50,9 @@
       "wheelchair": "Wheelchair",
       "low-floor-access": "Low Floor Access",
       "assistance-available": "Assistance Available"
-    }
+    },
+    "select-departure": "Select departure station",
+    "select-destination": "Select destination station"
   },
   "passenger": {
     "types": {
@@ -107,6 +109,11 @@
     "confirmation": "Confirmation",
     "payment-success": "Payment successful!",
     "ticket-sent-to-email": "The tickets have been sent to your email address."
+  },
+  "user-trips": {
+    "title": "My Trips",
+    "remove": "Remove",
+    "no-trips": "You have no saved trips."
   },
   "not-found": {
     "title": "404: Page not found",

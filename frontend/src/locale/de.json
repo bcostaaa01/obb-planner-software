@@ -50,7 +50,9 @@
       "wheelchair": "Rollstuhl",
       "low-floor-access": "Niedriges Bodenprofil",
       "assistance-available": "Hilfe verfügbar"
-    }
+    },
+    "select-departure": "Wähle eine Abfahrtsstation",
+    "select-destination": "Wähle eine Ankunftsstation"
   },
   "passenger": {
     "types": {
@@ -106,6 +108,11 @@
     "confirmation": "Bestätigung",
     "payment-success": "Zahlung erfolgreich!",
     "ticket-sent-to-email": "Die Tickets wurden an Ihre E-Mail-Adresse gesendet."
+  },
+  "user-trips": {
+    "title": "Meine Reisen",
+    "remove": "Entfernen",
+    "no-trips": "Sie haben noch keine Reisen gespeichert."
   },
   "not-found": {
     "title": "404: Seite nicht gefunden",
