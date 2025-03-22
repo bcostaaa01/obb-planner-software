@@ -1,6 +1,5 @@
 import type { Passenger } from "./Passenger";
 import type { DiscountType } from "./Passenger";
-
 export interface Trip {
   id: number;
   startStation: string;
@@ -17,7 +16,12 @@ export interface Trip {
 
 export type SearchedTrip = Pick<
   Trip,
-  "startStation" | "endStation" | "startTime" | "passenger" | "discount" | "date"
+  | "startStation"
+  | "endStation"
+  | "startTime"
+  | "passenger"
+  | "discount"
+  | "date"
 >;
 
 export type Accessibility = {

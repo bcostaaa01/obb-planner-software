@@ -14,10 +14,8 @@
                 </div>
 
                 <div class="flex flex-col items-center justify-center w-1/2 z-10">
-                    <SelectedTrip :date="displayDate" :time="displayTime"
-                        :departure="selectedTrip?.startStation || startStation"
-                        :destination="selectedTrip?.endStation || endStation" v-if="!loading"
-                        :checkbox-label="t('trip-details.best-fare')" />
+                    <SelectedTrip :date="displayDate" :time="displayTime" :checkboxLabel="t('trip-planner.best-fare')"
+                        v-if="!loading" />
 
                     <div v-if="selectedTrip" class="bg-white shadow-md p-4 w-full mb-4 mt-4">
                         <div class="flex justify-between items-center">

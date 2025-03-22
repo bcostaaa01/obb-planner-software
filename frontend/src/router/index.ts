@@ -5,6 +5,7 @@ import NotFound from "../views/NotFound.vue";
 import Cart from "../views/Cart.vue";
 import Checkout from "../views/Checkout.vue";
 import i18n from "../composables/i18n";
+import UserTrips from "../views/UserTrips.vue";
 
 const routes = [
   {
@@ -13,6 +14,7 @@ const routes = [
     children: [
       { path: "", component: Home },
       { path: "trip-details", component: TripDetails },
+      { path: "user-trips", component: UserTrips },
       { path: "cart", component: Cart },
       { path: "checkout", component: Checkout },
     ],

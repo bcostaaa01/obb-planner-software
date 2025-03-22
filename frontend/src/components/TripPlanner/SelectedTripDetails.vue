@@ -9,8 +9,8 @@
                 <TimeDisplay :time="trip.endTime || ''" />
             </div>
             <div class="flex flex-col pl-2 ml-4 justify-between">
-                <StationDisplay :station-name="trip.startStation" class="mt-7" />
-                <StationDisplay :station-name="trip.endStation" />
+                <StationDisplay :station-name="currentDeparture" class="mt-7" />
+                <StationDisplay :station-name="currentDestination" />
             </div>
         </div>
 
@@ -29,21 +29,23 @@
 </template>
 
 <script setup lang="ts">
-import { type Trip } from '../../types/Trip';
+import { type ExtendedTrip } from '../../types/Trip';
 import TimeDisplay from './TimeDisplay.vue';
 import StationDisplay from './StationDisplay.vue';
 import PassengerInfo from './PassengerInfo.vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
+import { useTripDirection } from '../../composables/useTripDirection';
 
 const { t } = useI18n();
 const router = useRouter();
+const { currentDeparture, currentDestination } = useTripDirection();
 
 const goBack = () => {
     router.back();
 };
 
 defineProps<{
-    trip: Trip;
+    trip: ExtendedTrip;
 }>();
 </script>

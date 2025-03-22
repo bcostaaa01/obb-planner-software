@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col bg-white shadow-md p-4 w-full">
         <div class="flex flex-col mb-6">
-            <h2 class="text-xl text-gray-900">{{ departure }} › {{ destination }}</h2>
+            <h2 class="text-xl text-gray-900">{{ currentDeparture }} › {{ currentDestination }}</h2>
         </div>
         <div class="flex justify-between items-center">
             <div class="flex items-center">
@@ -43,7 +43,9 @@ const { savedTrip } = useSaveTrip();
 const {
     toggleDirection,
     updateAvailableTrips,
-    isLoading
+    isLoading,
+    currentDeparture,
+    currentDestination
 } = useTripDirection();
 
 const {
@@ -56,8 +58,6 @@ const {
 defineProps<{
     date: string;
     time: string;
-    departure: string;
-    destination: string;
     checkboxLabel: string;
 }>();
 

@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import type { Trip } from "../types/Trip";
+import supabase from "../composables/useSupabaseConfig";
 
 export const useTripsStore = defineStore("trips", () => {
   const trips = ref<Trip[]>([]);
@@ -32,5 +33,47 @@ export const useTripsStore = defineStore("trips", () => {
     return cart.value.reduce((acc, trip) => acc + (trip.price || 0), 0);
   };
 
-  return { trips, selectedTrip, saveTrip, getTrips, setSelectedTrip, cart, addTripToCart, getCart, getTotalPrice };
+  const fetchUserTrips = async () => {
+    try {
+      const { data, error } = await supabase.from("user_trips").select("*");
+
+      if (error) {
+        console.error("Error fetching trips:", error);
+        return [];
+      }
+
+      trips.value = data;
+      return data;
+    } catch (error) {
+      console.error("Error fetching trips:", error);
+      return [];
+    }
+  };
+
+  const removeTripFromDatabase = async (tripId: string) => {
+    const { data, error } = await supabase
+      .from("user_trips")
+      .delete()
+      .eq("id", tripId);
+
+    if (error) {
+      console.error("Error deleting trip:", error);
+    }
+
+    return data;
+  };
+
+  return {
+    trips,
+    selectedTrip,
+    saveTrip,
+    getTrips,
+    setSelectedTrip,
+    cart,
+    addTripToCart,
+    getCart,
+    getTotalPrice,
+    fetchUserTrips,
+    removeTripFromDatabase,
+  };
 });

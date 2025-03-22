@@ -161,7 +161,7 @@ const saveTripDetails = () => {
 
     const dateTrips = mockTrips[selectedDate.value];
     if (dateTrips && dateTrips[routeKey]) {
-        setAvailableTrips(dateTrips[routeKey] as ExtendedTrip[]);
+        setAvailableTrips(dateTrips[routeKey] as unknown as ExtendedTrip[]);
         showError.value = false;
         errorMessage.value = "";
     } else {

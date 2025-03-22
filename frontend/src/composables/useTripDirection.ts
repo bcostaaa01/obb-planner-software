@@ -1,5 +1,5 @@
 import { ref, computed } from "vue";
-import type { Trip } from "../types/Trip";
+import type { ExtendedTrip, Trip } from "../types/Trip";
 import { useSaveTrip } from "./useSaveTrip";
 import { mockTrips } from "../mocks/trips";
 
@@ -39,7 +39,7 @@ export function useTripDirection() {
 
     // Check if we have trips for this date
     if (mockTrips[date] && mockTrips[date][routeKey]) {
-      setAvailableTrips(mockTrips[date][routeKey]);
+      setAvailableTrips(mockTrips[date][routeKey] as unknown as ExtendedTrip[]);
     } else {
       setAvailableTrips([]);
     }
