@@ -113,7 +113,8 @@
   "user-trips": {
     "title": "My Trips",
     "remove": "Remove",
-    "no-trips": "You have no saved trips."
+    "no-trips": "You have no saved trips.",
+    "segments": "Segments"
   },
   "not-found": {
     "title": "404: Page not found",

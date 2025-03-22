@@ -112,7 +112,8 @@
   "user-trips": {
     "title": "Meine Reisen",
     "remove": "Entfernen",
-    "no-trips": "Sie haben noch keine Reisen gespeichert."
+    "no-trips": "Sie haben noch keine Reisen gespeichert.",
+    "segments": "Verbindungen"
   },
   "not-found": {
     "title": "404: Seite nicht gefunden",
