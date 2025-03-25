@@ -14,7 +14,8 @@
                         <span class="bg-green-500 text-white text-xs px-2 py-1">PAID</span>
                     </div>
                     <button @click="$emit('closeTicket')" class="text-white hover:text-gray-300 cursor-pointer">
-                        <FontAwesomeIcon :icon="faXmark" class="h-5 w-5 hover:text-gray-300 dark:hover:text-gray-300 transition-all duration-300" />
+                        <FontAwesomeIcon :icon="faXmark"
+                            class="h-5 w-5 hover:text-gray-300 dark:hover:text-gray-300 transition-all duration-300" />
                     </button>
                 </div>
 
@@ -51,13 +52,13 @@
                     <!-- Time and Route -->
                     <div class="mb-6">
                         <div class="text-sm text-gray-500">TIME</div>
-                        <div class="text-lg font-semibold">{{ trip.date }} - {{ trip.start_time }}</div>
+                        <div class="text-lg font-semibold">{{ trip.date }} - {{ trip.starttime }}</div>
                     </div>
 
                     <!-- Route -->
                     <div class="flex justify-between items-center mb-6">
                         <div class="text-2xl font-bold text-red-600">
-                            {{ trip.start_station }} - {{ trip.end_station }}
+                            {{ trip.startstation }} - {{ trip.endstation }}
                         </div>
                     </div>
 
@@ -107,7 +108,7 @@ onMounted(async () => {
     try {
         isTicketLoading.value = true;
         setTimeout(async () => {
-            const ticketData = `${props.trip.id}-${props.trip.start_station}-${props.trip.end_station}`;
+            const ticketData = `${props.trip.id}-${props.trip.startStation}-${props.trip.endStation}`;
             qrCodeUrl.value = await QRCode.toDataURL(ticketData);
             isTicketLoading.value = false;
         }, 2000);

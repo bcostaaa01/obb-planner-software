@@ -11,15 +11,15 @@ export function useTripDirection() {
   const currentDeparture = computed(() => {
     if (!savedTrip.value) return "";
     return isReversed.value
-      ? savedTrip.value.endStation
-      : savedTrip.value.startStation;
+      ? savedTrip.value.endstation
+      : savedTrip.value.startstation;
   });
 
   const currentDestination = computed(() => {
     if (!savedTrip.value) return "";
     return isReversed.value
-      ? savedTrip.value.startStation
-      : savedTrip.value.endStation;
+      ? savedTrip.value.startstation
+      : savedTrip.value.endstation;
   });
 
   const toggleDirection = () => {
@@ -32,8 +32,8 @@ export function useTripDirection() {
     isLoading.value = true;
 
     const routeKey = isReversed.value
-      ? `${savedTrip.value.endStation}-${savedTrip.value.startStation}`
-      : `${savedTrip.value.startStation}-${savedTrip.value.endStation}`;
+      ? `${savedTrip.value.endstation}-${savedTrip.value.startstation}`
+      : `${savedTrip.value.startstation}-${savedTrip.value.endstation}`;
 
     const date = savedTrip.value.date;
 

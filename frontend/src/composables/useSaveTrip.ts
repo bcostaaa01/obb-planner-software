@@ -13,20 +13,22 @@ export function useSaveTrip() {
   };
 
   const addTripToCheckoutDB = async (trip: Trip) => {
+    const tripData = {
+      startstation: trip.startstation,
+      endstation: trip.endstation,
+      starttime: trip.starttime,
+      endtime: trip.endtime,
+      price: trip.price,
+      passengercount: trip.passenger?.count,
+      passengertype: trip.passenger?.type,
+      passengerdiscount: trip.passenger?.discount,
+      segments: trip.segments,
+      date: trip.date,
+    };
+
     const { data, error } = await supabase
       .from("user_trips")
-      .insert({
-        start_station: trip.startStation,
-        end_station: trip.endStation,
-        start_time: trip.startTime,
-        end_time: trip.endTime,
-        price: trip.price,
-        passenger_count: trip.passenger?.count,
-        passenger_type: trip.passenger?.type,
-        passenger_discount: trip.passenger?.discount,
-        segments: trip.segments,
-        date: trip.date,
-      })
+      .insert(tripData)
       .select();
 
     if (error) {

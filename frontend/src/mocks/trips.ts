@@ -8,10 +8,10 @@ export interface TripSegment {
 
 export interface ExtendedTrip extends TripSegment {
   id: string;
-  startStation: string;
-  endStation: string;
-  startTime: string;
-  endTime: string;
+  startstation: string;
+  endstation: string;
+  starttime: string;
+  endtime: string;
   price: number;
   date: string;
   segments: TripSegment[];
@@ -30,10 +30,10 @@ export const mockTrips: TripsByDate = {
     "Salzburg Hbf-Graz Hbf": [
       {
         id: "1",
-        startStation: "Salzburg Hbf",
-        endStation: "Graz Hbf",
-        startTime: "14:35",
-        endTime: "17:05",
+        startstation: "Salzburg Hbf",
+        endstation: "Graz Hbf",
+        starttime: "14:35",
+        endtime: "17:05",
         price: 29.9,
         date: "2025-03-20",
         trainType: "RJ",
@@ -62,10 +62,10 @@ export const mockTrips: TripsByDate = {
     "Graz Hbf-Salzburg Hbf": [
       {
         id: "2",
-        startStation: "Graz Hbf",
-        endStation: "Salzburg Hbf",
-        startTime: "09:30",
-        endTime: "12:00",
+        startstation: "Graz Hbf",
+        endstation: "Salzburg Hbf",
+        starttime: "09:30",
+        endtime: "12:00",
         price: 29.9,
         date: "2025-03-20",
         trainType: "RJ",
@@ -96,10 +96,10 @@ export const mockTrips: TripsByDate = {
     "Wien Hbf-Graz Hbf": [
       {
         id: "1",
-        startStation: "Wien Hbf",
-        endStation: "Graz Hbf",
-        startTime: "14:35",
-        endTime: "17:05",
+        startstation: "Wien Hbf",
+        endstation: "Graz Hbf",
+        starttime: "14:35",
+        endtime: "17:05",
         price: 29.9,
         date: "2025-03-21",
         trainType: "RJ",

@@ -14,10 +14,10 @@ export const mockTrips: Record<string, ExtendedTrip[]> = {
   "Wien Hbf-Salzburg Hbf": [
     {
       id: 1,
-      startStation: "Wien Hbf",
-      endStation: "Salzburg Hbf",
-      startTime: "08:25",
-      endTime: "10:53",
+      startstation: "Wien Hbf",
+      endstation: "Salzburg Hbf",
+      starttime: "08:25",
+      endtime: "10:53",
       price: 29.9,
       segments: [
         {
@@ -36,10 +36,10 @@ export const mockTrips: Record<string, ExtendedTrip[]> = {
     },
     {
       id: 2,
-      startStation: "Wien Hbf",
-      endStation: "Salzburg Hbf",
-      startTime: "10:30",
-      endTime: "13:10",
+      startstation: "Wien Hbf",
+      endstation: "Salzburg Hbf",
+      starttime: "10:30",
+      endtime: "13:10",
       price: 24.9,
       segments: [
         {
@@ -58,10 +58,10 @@ export const mockTrips: Record<string, ExtendedTrip[]> = {
     },
     {
       id: 3,
-      startStation: "Wien Hbf",
-      endStation: "Salzburg Hbf",
-      startTime: "14:55",
-      endTime: "18:20",
+      startstation: "Wien Hbf",
+      endstation: "Salzburg Hbf",
+      starttime: "14:55",
+      endtime: "18:20",
       price: 34.9,
       segments: [
         {
@@ -83,10 +83,10 @@ export const mockTrips: Record<string, ExtendedTrip[]> = {
   "Wien Hbf-Graz Hbf": [
     {
       id: 4,
-      startStation: "Wien Hbf",
-      endStation: "Graz Hbf",
-      startTime: "07:40",
-      endTime: "10:12",
+      startstation: "Wien Hbf",
+      endstation: "Graz Hbf",
+      starttime: "07:40",
+      endtime: "10:12",
       price: 27.5,
       segments: [
         {
@@ -105,10 +105,10 @@ export const mockTrips: Record<string, ExtendedTrip[]> = {
     },
     {
       id: 5,
-      startStation: "Wien Hbf",
-      endStation: "Graz Hbf",
-      startTime: "12:25",
-      endTime: "15:45",
+      startstation: "Wien Hbf",
+      endstation: "Graz Hbf",
+      starttime: "12:25",
+      endtime: "15:45",
       price: 22.9,
       segments: [
         {
@@ -135,10 +135,10 @@ export const mockTrips: Record<string, ExtendedTrip[]> = {
   "Graz Hbf-Wien Hbf": [
     {
       id: 6,
-      startStation: "Graz Hbf",
-      endStation: "Wien Hbf",
-      startTime: "09:15",
-      endTime: "11:50",
+      startstation: "Graz Hbf",
+      endstation: "Wien Hbf",
+      starttime: "09:15",
+      endtime: "11:50",
       price: 28.9,
       segments: [
         {

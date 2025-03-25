@@ -8,7 +8,7 @@
                     {{ trip.date }}
                 </span>
                 <span class="text-gray-800">
-                    {{ trip.startStation }}
+                    {{ trip.startstation }}
                 </span>
                 <div class="flex flex-row">
                     <span class="font-bold">{{ startTime.hours }}</span>
@@ -38,7 +38,7 @@
             <div class="flex flex-col pl-2 ml-4 relative">
                 <div class="border-l border-gray-300 h-full pl-5">
                     <span class="text-gray-800">
-                        {{ trip.endStation }}
+                        {{ trip.endstation }}
                     </span>
                     <div class="flex flex-row">
                         <span class="font-bold">{{ endTime.hours }}</span>
@@ -75,8 +75,8 @@ const props = defineProps<{
     trip: ExtendedTrip;
 }>();
 
-const startTime = useTimeFormat(props.trip.startTime);
-const endTime = useTimeFormat(props.trip.endTime || '');
+const startTime = useTimeFormat(props.trip.starttime);
+const endTime = useTimeFormat(props.trip.endtime || '');
 
 const segment = computed(() => props.trip.segments[0] || { trainType: '', duration: '', transfers: 0 });
 const secondSegment = computed(() => props.trip.segments.length > 1 ? props.trip.segments[1] : null);

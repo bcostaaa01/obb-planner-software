@@ -14,8 +14,10 @@
                 </div>
 
                 <div class="flex flex-col items-center justify-center w-1/2 z-10">
-                    <SelectedTrip :date="displayDate" :time="displayTime" :checkboxLabel="t('trip-planner.best-fare')"
-                        v-if="!loading" />
+                    <SelectedTrip :date="displayDate" :time="displayTime"
+                        :departure="selectedTrip?.startstation || startStation"
+                        :destination="selectedTrip?.endstation || endStation" v-if="!loading"
+                        :checkbox-label="t('trip-details.best-fare')" />
 
                     <div v-if="selectedTrip" class="bg-white shadow-md p-4 w-full mb-4 mt-4">
                         <div class="flex justify-between items-center">
@@ -69,8 +71,8 @@ const { addTripToCart } = useTripsStore();
 const formDate = ref(localStorage.getItem('formDate') || '');
 const formTime = ref(localStorage.getItem('formTime') || '');
 
-const startStation = computed(() => savedTrip.value?.startStation || '');
-const endStation = computed(() => savedTrip.value?.endStation || '');
+const startStation = computed(() => savedTrip.value?.startstation || '');
+const endStation = computed(() => savedTrip.value?.endstation || '');
 
 const formatDate = (dateString: string) => {
     if (!dateString) return '';

@@ -3,10 +3,9 @@
         <Skeleton v-if="isTripLoading" :loading="isTripLoading" />
         <div v-else>
             <div class="flex flex-col">
-                <div class="flex flex-col mb-2 cursor-pointer hover:bg-gray-100 p-4"
-                    @click="toggleTicketVisibility">
-                    <h2 class="text-xl text-gray-900">{{ trip.startStation }} › {{ trip.endStation }}</h2>
-                    <span class="text-lg text-gray-700">{{ trip.date }} {{ trip.startTime }}</span>
+                <div class="flex flex-col mb-2 cursor-pointer hover:bg-gray-100 p-4" @click="toggleTicketVisibility">
+                    <h2 class="text-xl text-gray-900 font-bold">{{ trip.startstation }} › {{ trip.endstation }}</h2>
+                    <span class="text-lg text-gray-700">{{ trip.date }} - {{ trip.starttime }}</span>
                     <div class="text-lg text-gray-700 mt-2">
                         <span class="font-bold">{{ t('user-trips.segments') }}</span>
                         <div v-for="(segment, index) in trip.segments" :key="index" class="mb-1">

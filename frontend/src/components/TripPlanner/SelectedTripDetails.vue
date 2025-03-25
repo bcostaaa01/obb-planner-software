@@ -5,8 +5,8 @@
                 <span class="text-gray-800">
                     {{ trip.date }}
                 </span>
-                <TimeDisplay :time="trip.startTime" />
-                <TimeDisplay :time="trip.endTime || ''" />
+                <TimeDisplay :time="trip.starttime" />
+                <TimeDisplay :time="trip.endtime || ''" />
             </div>
             <div class="flex flex-col pl-2 ml-4 justify-between">
                 <StationDisplay :station-name="currentDeparture" class="mt-7" />

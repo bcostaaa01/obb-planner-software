@@ -171,9 +171,9 @@ const saveTripDetails = () => {
     }
 
     saveTrip({
-        startStation: startStation.value,
-        endStation: endStation.value,
-        startTime: formattedTime,
+        startstation: startStation.value,
+        endstation: endStation.value,
+        starttime: startTime.value,
         date: formattedDate,
         discount: selectedPassenger.discount as DiscountType,
         passenger: selectedPassenger

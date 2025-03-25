@@ -2,10 +2,10 @@ import type { Passenger } from "./Passenger";
 import type { DiscountType } from "./Passenger";
 export interface Trip {
   id: number;
-  startStation: string;
-  endStation: string;
-  startTime: string;
-  endTime?: string;
+  startstation: string;
+  endstation: string;
+  starttime: string;
+  endtime?: string;
   price?: number;
   passenger?: Passenger;
   segments: TripSegment[];
@@ -16,9 +16,9 @@ export interface Trip {
 
 export type SearchedTrip = Pick<
   Trip,
-  | "startStation"
-  | "endStation"
-  | "startTime"
+  | "startstation"
+  | "endstation"
+  | "starttime"
   | "passenger"
   | "discount"
   | "date"
