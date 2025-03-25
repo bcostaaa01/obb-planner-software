@@ -16,7 +16,6 @@
 <script setup lang="ts">
 import { defineProps, defineEmits } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faTrainTram, faUser } from '@fortawesome/free-solid-svg-icons';
 import MenuLink from './MenuLink.vue';
 

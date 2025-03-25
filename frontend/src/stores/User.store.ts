@@ -6,24 +6,19 @@ import type { User } from "../auth/User";
 export const useUserStore = defineStore("user", () => {
   const user = ref<User | null>(null);
   const isLoading = ref(false);
-  const error = ref<string | null>(null);
 
   const getUser = async () => {
-    if (user.value) return user.value;
-
     isLoading.value = true;
-    error.value = null;
-
     try {
-      const { data, error: supaError } = await supabase.auth.getUser();
+      const { data, error } = await supabase.auth.getUser();
 
-      if (supaError) throw supaError;
+      if (error) {
+        console.error("Error fetching user:", error);
+        return null;
+      }
 
       user.value = data.user;
       return data.user;
-    } catch (e) {
-      error.value = "Failed to fetch user";
-      return null;
     } finally {
       isLoading.value = false;
     }
@@ -37,5 +32,5 @@ export const useUserStore = defineStore("user", () => {
     }
   });
 
-  return { user, getUser, isLoading, error };
+  return { user, getUser, isLoading };
 });
