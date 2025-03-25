@@ -6,6 +6,7 @@ import Cart from "../views/Cart.vue";
 import Checkout from "../views/Checkout.vue";
 import i18n from "../composables/i18n";
 import UserTrips from "../views/UserTrips.vue";
+import UserSettings from "../views/UserSettings.vue";
 
 const routes = [
   {
@@ -17,6 +18,7 @@ const routes = [
       { path: "user-trips", component: UserTrips },
       { path: "cart", component: Cart },
       { path: "checkout", component: Checkout },
+      { path: "user-settings", component: UserSettings },
     ],
   },
   {

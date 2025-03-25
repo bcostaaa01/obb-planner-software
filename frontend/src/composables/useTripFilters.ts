@@ -1,4 +1,3 @@
-// src/composables/useTripFilters.ts
 import { ref } from "vue";
 
 export function useTripFilters() {

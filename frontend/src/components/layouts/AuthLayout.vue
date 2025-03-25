@@ -37,11 +37,8 @@
             <button @click="isLogin = true" class="text-red-700 cursor-pointer">{{ t('auth.switch-to-login') }}</button>
         </div>
 
-        <div v-else-if="isUserLogged">
-            <h1 class="text-2xl text-center text-gray-600">{{ t('auth.welcome') + ' ' + userFirstName }}</h1>
-            <button @click="handleSignOut" class="text-red-700 cursor-pointer">
-                {{ t('auth.logout') }}
-            </button>
+        <div v-else-if="isUserLogged" class="flex flex-col gap-4">
+            <UserMenu :user-first-name="userFirstName" @sign-out="handleSignOut" />
         </div>
     </div>
 </template>
@@ -53,6 +50,7 @@ import { useI18n } from 'vue-i18n';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { useValidateInputs } from '../../composables/useValidateInputs';
+import UserMenu from '../shared/Navigation/UserMenu.vue';
 
 const { t } = useI18n();
 

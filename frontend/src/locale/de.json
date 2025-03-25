@@ -126,6 +126,13 @@
     "segments": "Verbindungen",
     "paid": "Bezahlt"
   },
+  "user-settings": {
+    "title": "Benutzereinstellungen",
+    "name": "Name",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "address": "Adresse"
+  },
   "not-found": {
     "title": "404: Seite nicht gefunden",
     "message": "Bitte überprüfen Sie die URL oder gehen Sie zurück zur Startseite."

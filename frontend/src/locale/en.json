@@ -127,6 +127,13 @@
     "segments": "Segments",
     "paid": "Paid"
   },
+  "user-settings": {
+    "title": "User Settings",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address"
+  },
   "not-found": {
     "title": "404: Page not found",
     "message": "Please check the URL or go back to the home page."
