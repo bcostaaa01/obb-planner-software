@@ -116,6 +116,17 @@
     "no-trips": "You have no saved trips.",
     "segments": "Segments"
   },
+  "trip-ticket": {
+    "title": "Trip Ticket",
+    "price": "Price",
+    "passenger": "Passenger",
+    "seat": "Seat",
+    "class": "Class",
+    "time": "Time",
+    "booking-code": "Booking Code",
+    "segments": "Segments",
+    "paid": "Paid"
+  },
   "not-found": {
     "title": "404: Page not found",
     "message": "Please check the URL or go back to the home page."

@@ -11,7 +11,7 @@
                 <!-- Header -->
                 <div class="bg-gray-900 py-2 px-2 flex flex-row justify-between items-center">
                     <div>
-                        <span class="bg-green-500 text-white text-xs px-2 py-1">PAID</span>
+                        <span class="bg-green-500 text-white text-xs px-2 py-1">{{ t('trip-ticket.paid') }}</span>
                     </div>
                     <button @click="$emit('closeTicket')" class="text-white hover:text-gray-300 cursor-pointer">
                         <FontAwesomeIcon :icon="faXmark"
@@ -25,14 +25,14 @@
                     <div class="flex justify-between items-center mb-6">
                         <img src="../../assets/obb-logo.png" alt="Logo" class="h-8">
                         <div class="text-right">
-                            <div class="text-sm text-gray-500">PRICE</div>
+                            <div class="text-sm text-gray-500">{{ t('trip-ticket.price') }}</div>
                             <div class="text-xl font-semibold">€{{ trip.price }}</div>
                         </div>
                     </div>
 
                     <!-- Passenger Info -->
                     <div class="mb-6">
-                        <div class="text-sm text-gray-500">PASSENGER</div>
+                        <div class="text-sm text-gray-500">{{ t('trip-ticket.passenger') }}</div>
                         <div class="text-lg font-semibold">{{ trip.passenger?.count }}</div>
                         <div class="text-sm text-gray-600">ID: {{ trip.id }}</div>
                     </div>
@@ -40,18 +40,18 @@
                     <!-- Seat Info -->
                     <div class="grid grid-cols-2 gap-4 mb-6">
                         <div>
-                            <div class="text-sm text-gray-500">CLASS</div>
+                            <div class="text-sm text-gray-500">{{ t('trip-ticket.class') }}</div>
                             <div class="text-lg font-semibold">{{ trip.passenger?.type }}</div>
                         </div>
                         <div>
-                            <div class="text-sm text-gray-500">SEAT</div>
+                            <div class="text-sm text-gray-500">{{ t('trip-ticket.seat') }}</div>
                             <div class="text-lg font-semibold">{{ trip.passenger?.seat }}</div>
                         </div>
                     </div>
 
                     <!-- Time and Route -->
                     <div class="mb-6">
-                        <div class="text-sm text-gray-500">TIME</div>
+                        <div class="text-sm text-gray-500">{{ t('trip-ticket.time') }}</div>
                         <div class="text-lg font-semibold">{{ trip.date }} - {{ trip.starttime }}</div>
                     </div>
 
@@ -77,7 +77,7 @@
                             <img :src="qrCodeUrl" alt="QR Code" class="w-full">
                         </div>
                         <div class="mt-4 text-center text-sm text-gray-500">
-                            BOOKING CODE
+                            {{ t('trip-ticket.booking-code') }}
                             <div class="font-mono text-lg">{{ trip.id }}</div>
                         </div>
                     </div>
@@ -93,6 +93,9 @@ import QRCode from 'qrcode';
 import type { ExtendedTrip } from '../../types/Trip';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faXmark, faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const props = defineProps<{
     trip: ExtendedTrip;
