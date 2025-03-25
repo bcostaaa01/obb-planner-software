@@ -128,10 +128,22 @@
   },
   "user-settings": {
     "title": "Benutzereinstellungen",
-    "name": "Name",
-    "email": "E-Mail",
-    "phone": "Telefon",
-    "address": "Adresse"
+    "personal-details": {
+      "title": "Persönliche Informationen",
+      "name": "Name",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "address": "Adresse",
+      "state": "Bundesland",
+      "zip": "PLZ",
+      "city": "Ort",
+      "country": "Land"
+    },
+    "customer-details": {
+      "title": "Kundeninformationen",
+      "discount": "Rabatt",
+      "passenger-type": "Passagiertyp"
+    }
   },
   "not-found": {
     "title": "404: Seite nicht gefunden",
