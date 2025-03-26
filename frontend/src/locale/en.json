@@ -144,6 +144,11 @@
       "title": "Customer Details",
       "discount": "Discount",
       "passenger-type": "Passenger Type"
+    },
+    "save": "Save",
+    "notifications": {
+      "success": "User settings saved successfully",
+      "error": "Failed to save user settings"
     }
   },
   "not-found": {

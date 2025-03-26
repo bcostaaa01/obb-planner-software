@@ -143,6 +143,11 @@
       "title": "Kundeninformationen",
       "discount": "Rabatt",
       "passenger-type": "Passagiertyp"
+    },
+    "save": "Speichern",
+    "notifications": {
+      "success": "Benutzereinstellungen gespeichert",
+      "error": "Fehler beim Speichern der Benutzereinstellungen"
     }
   },
   "not-found": {

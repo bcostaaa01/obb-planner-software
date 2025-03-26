@@ -17,3 +17,17 @@ export type User = {
   created_at: string;
   updated_at?: string;
 };
+
+export type UserData = {
+  id: string;
+  email: string;
+  first_name: string;
+  last_name: string;
+  phone: string;
+  address: string;
+  city: string;
+  state: string;
+  zip: string;
+  discount: string;
+  passenger_type: string;
+};

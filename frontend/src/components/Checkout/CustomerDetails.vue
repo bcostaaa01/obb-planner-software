@@ -7,9 +7,9 @@
                     class="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-64"
                     :required="field.required" />
             </div>
-            <button type="submit" :disabled="!isFormValid"
+            <button type="submit" :disabled="!isFormValid || loading"
                 class="mt-4 bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200 w-64"
-                :class="{ 'opacity-50 cursor-not-allowed': !isFormValid }">
+                :class="{ 'opacity-50 cursor-not-allowed': !isFormValid || loading }">
                 <span v-if="loading">
                     <FontAwesomeIcon :icon="faCircleNotch" class="animate-spin" />
                 </span>
@@ -20,14 +20,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { customerDetailsConfig } from './formConfig';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import CheckoutStepLayout from '../layouts/CheckoutStepLayout.vue';
 import { useI18n } from 'vue-i18n';
+import { useUserStore } from '../../stores/User.store';
 
 const { t } = useI18n();
+const userStore = useUserStore();
 const loading = ref(false);
 
 const formInputs = ref(
@@ -39,7 +41,7 @@ const formInputs = ref(
 
 const isFormValid = computed(() => {
     return customerDetailsConfig.every(field => {
-        return formInputs.value[field.id].trim() !== '';
+        return !field.required || formInputs.value[field.id].trim() !== '';
     });
 });
 
@@ -55,4 +57,35 @@ const handleSubmit = () => {
         props.goToNextStep();
     }, 2000);
 };
+
+onMounted(async () => {
+    try {
+        loading.value = true;
+        const userData = await userStore.loadUserData();
+
+        if (userData) {
+            const fieldMapping: Record<string, keyof typeof userData> = {
+                'first_name': 'first_name',
+                'email': 'email',
+                'address': 'address',
+                'city': 'city',
+                'state': 'state',
+                'zip': 'zip',
+                'phone': 'phone',
+                'country': 'country'
+            };
+
+            customerDetailsConfig.forEach(field => {
+                const mappedField = fieldMapping[field.id];
+                if (mappedField && userData[mappedField]) {
+                    formInputs.value[field.id] = userData[mappedField];
+                }
+            });
+        }
+    } catch (error) {
+        console.error('Error loading user data:', error);
+    } finally {
+        loading.value = false;
+    }
+});
 </script>

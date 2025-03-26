@@ -8,6 +8,8 @@ import { createI18n } from "vue-i18n";
 import de from "./locale/de.json";
 import en from "./locale/en.json";
 import { createPinia } from "pinia";
+import Toast, { type PluginOptions } from "vue-toastification";
+import "vue-toastification/dist/index.css";
 
 const i18n = createI18n({
   locale: "de",
@@ -19,4 +21,14 @@ const i18n = createI18n({
 
 const pinia = createPinia();
 
-createApp(App).use(router).use(i18n).use(pinia).mount("#app");
+createApp(App)
+  .use(router)
+  .use(i18n)
+  .use(pinia)
+  .use(Toast, {
+    transition: "Vue-Toastification__fade",
+    maxToasts: 20,
+    newestOnTop: true,
+    position: "top-center",
+  } as PluginOptions)
+  .mount("#app");
