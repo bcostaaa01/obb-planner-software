@@ -13,12 +13,12 @@ export class NotificationServiceImplementation implements NotificationService {
     interruption: TripInterruption
   ): Promise<void> {
     const notification = {
-      tripId: interruption.tripId,
+      trip_id: interruption.trip_id,
       message: interruption.message,
       severity: interruption.severity,
-      userId: interruption.tripId,
+      user_id: interruption.user_id,
       read: false,
-      createdAt: new Date(),
+      created_at: new Date(),
     };
 
     await this.repository.create(notification);
