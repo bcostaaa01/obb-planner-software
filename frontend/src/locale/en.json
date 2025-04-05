@@ -114,7 +114,8 @@
     "title": "My Trips",
     "remove": "Remove",
     "no-trips": "You have no saved trips.",
-    "segments": "Segments"
+    "segments": "Segments",
+    "subscribe": "Subscribe"
   },
   "trip-ticket": {
     "title": "Trip Ticket",

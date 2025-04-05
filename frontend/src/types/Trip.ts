@@ -36,6 +36,28 @@ export interface TripSegment {
   transfers: number;
 }
 
+export interface TripUpdate {
+  id: string;
+  user_id: string;
+  trip_id: string;
+  message: string;
+  severity: TripUpdateSeverity;
+  read: boolean;
+  created_at: string;
+}
+
+export enum TripUpdateType {
+  DELAY = "delay",
+  DISRUPTION = "disruption",
+}
+
+export enum TripUpdateSeverity {
+  LOW = "LOW",
+  MEDIUM = "MEDIUM",
+  HIGH = "HIGH",
+}
+
 export interface ExtendedTrip extends Trip {
   segments: TripSegment[];
+  updates: TripUpdate[];
 }

@@ -42,8 +42,21 @@ export const useTripsStore = defineStore("trips", () => {
         return [];
       }
 
-      trips.value = data;
-      return data;
+      const { data: updates, error: updatesError } = await supabase
+        .from("notifications")
+        .select("*")
+        .eq("trip_id", data[0].id);
+
+      if (updatesError) {
+        console.error("Error fetching updates:", updatesError);
+        return [];
+      }
+
+      trips.value = data.map((trip) => ({
+        ...trip,
+        updates: updates.filter((update) => update.trip_id === trip.id),
+      }));
+      return trips.value;
     } catch (error) {
       console.error("Error fetching trips:", error);
       return [];
