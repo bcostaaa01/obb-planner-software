@@ -2,12 +2,14 @@ import { Request, Response } from "express";
 import { createClient } from "@supabase/supabase-js";
 import { Notification } from "../types/Notifications";
 import dotenv from "dotenv";
+import path from "path";
+import { config } from "../config";
 
-dotenv.config();
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_KEY
+  config.supabase.url,
+  config.supabase.key
 );
 
 // The controller layer is responsible for handling the requests and responses. It connects the service layer to the client.

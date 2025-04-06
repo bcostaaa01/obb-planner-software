@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { createClient } from "@supabase/supabase-js";
 import dotenv from "dotenv";
 import path from "path";
+import { config } from "../config";
 
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
@@ -14,8 +15,8 @@ console.log("Supabase Config:", {
 });
 
 const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_KEY
+  config.supabase.url,
+  config.supabase.key
 );
 
 export const authenticateUser = async (

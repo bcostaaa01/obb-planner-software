@@ -2,23 +2,16 @@ import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import { NotificationRepository, Notification } from "../types/Notifications";
 import dotenv from "dotenv";
 import path from "path";
+import { config } from "../config";
 
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
-
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_KEY
-);
 
 // The repository layer is responsible for interacting with the database.
 export class SupabaseNotificationRepository implements NotificationRepository {
   private supabase: SupabaseClient;
 
   constructor() {
-    this.supabase = createClient(
-      process.env.SUPABASE_URL,
-      process.env.SUPABASE_KEY
-    );
+    this.supabase = createClient(config.supabase.url, config.supabase.key);
   }
 
   async create(notification: Notification): Promise<Notification> {
