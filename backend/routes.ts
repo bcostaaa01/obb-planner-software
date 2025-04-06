@@ -14,12 +14,13 @@ export const setupNotificationRoutes = (
 
   router.use(authenticateUser);
 
-  router.post(
-    "/trip-interruption",
-    controller.createdTripInterruptionNotification
+  router.post("/trip-interruption", (req, res) =>
+    controller.createdTripInterruptionNotification(req, res)
   );
-  router.get("/", controller.getUserNotifications);
-  router.put("/:notificationId", controller.markNotificationAsRead);
+  router.get("/", (req, res) => controller.getUserNotifications(req, res));
+  router.put("/:notificationId", (req, res) =>
+    controller.markNotificationAsRead(req, res)
+  );
 
   return router;
 };

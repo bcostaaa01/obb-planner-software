@@ -13,7 +13,7 @@
                                 segment.transfers === 1 ? 'transfer' : 'transfers' }}
                         </div>
                     </div>
-                    <TripUpdate :update="trip.updates?.[0] as TripUpdateType" v-if="trip.updates?.[0]" />
+                    <TripUpdate :update="trip.updates?.[1] as TripUpdateType" v-if="trip.updates?.[1]" />
                 </div>
 
                 <div class="flex justify-start mb-2">
@@ -115,9 +115,9 @@ const subscribeToTrip = async () => {
             body: JSON.stringify({
                 user_id: session.user.id,
                 trip_id: props.trip.id,
-                message: 'Test notification - Train delayed by 20 minutes',
-                severity: 'MEDIUM',
-                type: 'DELAY',
+                message: 'Train was cancelled due to a technical issue',
+                severity: 'HIGH',
+                type: 'CANCELLATION',
                 created_at: new Date().toISOString()
             })
         });

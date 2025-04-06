@@ -1,9 +1,9 @@
 <template>
     <AppLayout>
-        <div class="flex flex-col"
+        <div class="flex flex-col h-full"
             style="background-image: url('https://www.oeamtc.at/oebb%2Bzug.jpg/article-default/18.297.092'); background-size: cover; background-position: center; background-repeat: no-repeat;">
-            <div class="flex flex-col items-center justify-center h-screen relative">
-                <div class="absolute right-0 bottom-10 m-4">
+            <div class="flex flex-col items-start justify-start h-screen relative px-8 pt-10 mb-10">
+                <div class="w-full px-4 md:w-auto md:px-0 md:absolute md:right-0 md:bottom-10 md:m-4 pb-10">
                     <TripPlannerForm />
                 </div>
             </div>

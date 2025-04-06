@@ -1,61 +1,62 @@
 <template>
-    <div class="flex flex-col p-8 mx-4 shadow-md bg-gray-100">
-        <div class="flex flex-row items-center absolute top-6">
+    <div class="flex flex-col p-4 md:p-6 lg:p-8 mx-0 shadow-md bg-gray-100 w-full">
+        <div class="flex flex-row items-center mb-6">
             <FontAwesomeIcon :icon="faRoute" class="text-gray-800 mr-3" />
             <span class="text-gray-800 font-bold">{{ t('trip-planner.heading') }}</span>
         </div>
-        <div class="flex flex-row">
-            <div class="flex flex-col mt-10">
+        <div class="flex flex-col md:flex-row md:flex-wrap lg:flex-nowrap gap-4">
+            <div class="flex flex-col w-full md:w-[calc(50%-8px)] lg:w-auto">
                 <span class="text-gray-800 font-bold mb-2">{{ t('trip-planner.departure') }}</span>
                 <fwb-select id="abfahrt" :model-value="startStation" required size="sm" type="multiselect" class="h-10"
                     :placeholder="t('trip-planner.select-departure')" :options="stations"
                     @update:model-value="(value) => { startStation = value; updateValidationStatus(); }"
                     :validation-status="showError ? validationStatus : undefined" />
             </div>
-            <div class="flex flex-col ml-6 mt-10">
+            <div class="flex flex-col w-full md:w-[calc(50%-8px)] lg:w-auto">
                 <span class="text-gray-800 font-bold mb-2">{{ t('trip-planner.destination') }}</span>
                 <fwb-select id="ankunft" :model-value="endStation" required size="sm" type="multiselect" class="h-10"
                     :placeholder="t('trip-planner.select-destination')" :options="stations"
                     @update:model-value="(value) => { endStation = value; updateValidationStatus(); }"
                     :validation-status="showError ? validationStatus : undefined" />
             </div>
-            <div class="flex flex-col ml-6 mt-10">
+            <div class="flex flex-col w-full md:w-[calc(50%-8px)] lg:w-auto">
                 <span class="text-gray-800 font-bold mb-2">{{ t('trip-planner.departure-time') }}</span>
-                <input type="time" v-model="startTime" class="h-10 px-2 border border-gray-300 rounded text-gray-800" />
+                <input type="time" v-model="startTime"
+                    class="h-10 px-2 border border-gray-300 rounded text-gray-800 w-full" />
             </div>
-            <div class="flex flex-col ml-6 mt-10">
+            <div class="flex flex-col w-full md:w-[calc(50%-8px)] lg:w-auto">
                 <span class="text-gray-800 font-bold mb-2">{{ t('trip-planner.departure-date') }}</span>
                 <Datepicker v-model="selectedDate" @update:model-value="updateSelectedDate" />
             </div>
         </div>
 
-        <div class="flex flex-row mt-6">
-            <div class="flex flex-col">
+        <div class="flex flex-col md:flex-row md:flex-wrap lg:flex-nowrap gap-4 mt-4">
+            <div class="flex flex-col w-full md:w-[calc(50%-8px)] lg:w-auto">
                 <span class="text-gray-800 font-bold mb-2">{{ t('trip-planner.passenger-type') }}</span>
                 <fwb-select id="passenger-type" v-model="selectedPassenger.type" required size="sm" type="multiselect"
                     class="h-10" :options="passengerTypes" @update:model-value="updateDiscountOptions" />
             </div>
-            <div class="flex flex-col ml-6">
+            <div class="flex flex-col w-full md:w-[calc(50%-8px)] lg:w-auto">
                 <span class="text-gray-800 font-bold mb-2">{{ t('trip-planner.passenger-discount') }}</span>
                 <fwb-select id="discount" v-model="selectedPassenger.discount" required size="sm" type="multiselect"
                     class="h-10" :options="availableDiscounts" />
             </div>
-            <div class="flex flex-col ml-6">
+            <div class="flex flex-col w-full md:w-[calc(50%-8px)] lg:w-auto">
                 <span class="text-gray-800 font-bold mb-2">{{ t('trip-planner.passenger-count') }}</span>
                 <input type="number" v-model="selectedPassenger.count" min="1" max="9"
-                    class="h-10 px-2 border border-gray-300 rounded text-gray-800" />
+                    class="h-10 px-2 border border-gray-300 rounded text-gray-800 w-full" />
             </div>
         </div>
 
-        <div v-if="showError" class="mt-2">
+        <div v-if="showError" class="mt-4">
             <span class="text-red-500">{{ errorMessage }}</span>
         </div>
 
-        <div class="flex flex-row justify-between mt-4">
+        <div class="flex flex-col sm:flex-row justify-between mt-6 gap-4">
             <fwb-button type="submit" size="md" class="w-full cursor-pointer"
                 style="background-color: #e2002a; border-radius: 0px;" @click="saveTripDetails">{{
                     t('trip-planner.search') }}</fwb-button>
-            <fwb-button type="submit" size="md" class="w-full cursor-pointer ml-6"
+            <fwb-button type="submit" size="md" class="w-full cursor-pointer"
                 style="background-color: #e2002a; border-radius: 0px;">{{
                     t('trip-planner.buy-tickets') }}</fwb-button>
         </div>

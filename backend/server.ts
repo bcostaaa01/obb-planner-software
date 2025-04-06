@@ -7,18 +7,18 @@ import { API_ENDPOINTS } from "./constants/api";
 import dotenv from "dotenv";
 import path from "path";
 
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
+
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
 
-dotenv.config({ path: path.resolve(__dirname, "../.env") });
-
 NotificationStore.initializeTestData();
 
 app.use(
-  API_ENDPOINTS.NOTIFICATIONS,
+  "/api" + API_ENDPOINTS.NOTIFICATIONS,
   setupNotificationRoutes(new NotificationController())
 );
 
