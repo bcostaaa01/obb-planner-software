@@ -5,7 +5,11 @@
         "moduleResolution": "node",
         "outDir": "./dist",
         "rootDir": "./",
-        "baseUrl": "."
+        "baseUrl": ".",
+        "typeRoots": [
+            "./node_modules/@types",
+            "./.env.d.ts"
+        ]
     },
     "include": [
         "**/*.ts"

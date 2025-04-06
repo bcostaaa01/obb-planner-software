@@ -1,17 +1,21 @@
 import { Request, Response, NextFunction } from "express";
 import { createClient } from "@supabase/supabase-js";
+import dotenv from "dotenv";
+import path from "path";
+
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKeyPreview =
-  process.env.SUPABASE_ANON_KEY?.substring(0, 10) + "...";
+  process.env.SUPABASE_KEY?.substring(0, 10) + "...";
 console.log("Supabase Config:", {
   url: supabaseUrl,
   keyPreview: supabaseKeyPreview,
 });
 
 const supabase = createClient(
-  "https://bwvbtyqrrbxcfybwovih.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ3dmJ0eXFycmJ4Y2Z5YndvdmloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEyOTQxMTIsImV4cCI6MjA1Njg3MDExMn0.6XAyped2tbBELG9_fM1SrWVG-NEqUNronpOijcmRZxg"
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_KEY
 );
 
 export const authenticateUser = async (
