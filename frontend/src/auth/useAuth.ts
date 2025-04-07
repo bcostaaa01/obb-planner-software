@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import supabase from "../composables/useSupabase";
+import supabase from "../composables/useSupabaseConfig";
 import type { User } from "./User";
 
 export const useAuth = () => {

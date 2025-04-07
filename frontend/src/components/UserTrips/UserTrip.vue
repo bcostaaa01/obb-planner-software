@@ -49,7 +49,7 @@ import Skeleton from '../TripPlanner/Skeleton.vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import TripTicket from './TripTicket.vue';
-import supabase from '../../composables/useSupabase';
+import supabase from '../../composables/useSupabaseConfig';
 import TripUpdate from './TripUpdate.vue';
 import type { TripUpdate as TripUpdateType } from '../../types/Trip';
 
