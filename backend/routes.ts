@@ -15,7 +15,7 @@ export const setupNotificationRoutes = (
   router.use(authenticateUser);
 
   router.post("/trip-interruption", (req, res) =>
-    controller.createdTripInterruptionNotification(req, res)
+    controller.createTripInterruptionNotification(req, res)
   );
   router.get("/", (req, res) => controller.getUserNotifications(req, res));
   router.put("/:notificationId", (req, res) =>

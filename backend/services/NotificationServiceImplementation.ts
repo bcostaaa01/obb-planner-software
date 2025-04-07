@@ -9,6 +9,10 @@ import {
 export class NotificationServiceImplementation implements NotificationService {
   private repository: NotificationRepository;
 
+  constructor(repository: NotificationRepository) {
+    this.repository = repository;
+  }
+
   async createTripInterruptionNotifications(
     interruption: TripInterruption
   ): Promise<void> {

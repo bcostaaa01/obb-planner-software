@@ -1,20 +1,19 @@
 import { Request, Response } from "express";
-import { createClient } from "@supabase/supabase-js";
-import { Notification } from "../types/Notifications";
+import { NotificationService } from "types";
 import dotenv from "dotenv";
 import path from "path";
-import { config } from "../config";
 
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
-const supabase = createClient(
-  config.supabase.url,
-  config.supabase.key
-);
-
 // The controller layer is responsible for handling the requests and responses. It connects the service layer to the client.
 export class NotificationController {
-  async createdTripInterruptionNotification(req: Request, res: Response) {
+  private notificationService: NotificationService;
+
+  constructor(notificationService: NotificationService) {
+    this.notificationService = notificationService;
+  }
+
+  async createTripInterruptionNotification(req: Request, res: Response) {
     try {
       const { trip_id, message, type, severity } = req.body;
       const userId = req.body.user_id;
@@ -23,35 +22,24 @@ export class NotificationController {
         return res.status(401).json({ message: "User not authenticated" });
       }
 
-      const notification: Notification = {
-        user_id: userId,
-        trip_id: trip_id,
+      const timestamp = new Date();
+
+      await this.notificationService.createTripInterruptionNotifications({
+        trip_id,
         message,
         severity,
-        read: false,
-        created_at: new Date(),
-      };
-
-      const { data, error } = await supabase
-        .from("notifications")
-        .insert(notification)
-        .select()
-        .single();
-
-      if (error) throw error;
+        user_id: userId,
+        type,
+        timestamp,
+      });
 
       res.status(200).json({
         message: "Notification created successfully",
-        notification: data,
       });
     } catch (error) {
       console.error("Error creating notification:", error);
       res.status(500).json({
-        message:
-          "Failed to create notification for trip " +
-          req.body.trip_id +
-          " with user id " +
-          req.body.user_id,
+        message: "Failed to create notification",
       });
     }
   }
@@ -64,13 +52,7 @@ export class NotificationController {
         return res.status(401).json({ message: "User not authenticated" });
       }
 
-      const { data, error } = await supabase
-        .from("notifications")
-        .select("*")
-        .eq("user_id", userId)
-        .order("created_at", { ascending: false });
-
-      if (error) throw error;
+      const data = await this.notificationService.getUserNotifications(userId);
 
       res.status(200).json(data);
     } catch (error) {
@@ -88,13 +70,7 @@ export class NotificationController {
         return res.status(401).json({ message: "User not authenticated" });
       }
 
-      const { error } = await supabase
-        .from("notifications")
-        .update({ read: true })
-        .eq("id", notificationId)
-        .eq("user_id", userId);
-
-      if (error) throw error;
+      await this.notificationService.markNotificationAsRead(notificationId);
 
       res.status(200).json({ message: "Notification marked as read" });
     } catch (error) {
