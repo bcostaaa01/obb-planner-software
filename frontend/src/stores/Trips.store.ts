@@ -1,14 +1,14 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import type { Trip } from "../types/Trip";
+import type { ExtendedTrip, Trip } from "../types/Trip";
 import supabase from "../composables/useSupabaseConfig";
 
 export const useTripsStore = defineStore("trips", () => {
-  const trips = ref<Trip[]>([]);
+  const trips = ref<ExtendedTrip[]>([]);
   const selectedTrip = ref<Trip | null>(null);
   const cart = ref<Trip[]>([]);
 
-  const saveTrip = (trip: Trip) => {
+  const saveTrip = (trip: ExtendedTrip) => {
     console.log("saveTrip", trip);
     trips.value.push(trip);
   };
