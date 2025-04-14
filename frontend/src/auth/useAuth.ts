@@ -19,6 +19,7 @@ export const useAuth = () => {
     } catch (error) {
       console.error(error);
       isLoading.value = false;
+      return error;
     }
     window.location.reload();
   };

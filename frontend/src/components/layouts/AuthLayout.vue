@@ -7,6 +7,7 @@
                 <span v-if="errors.email" class="text-red-500">{{ errors.email }}</span>
                 <input type="password" placeholder="Password" v-model="password" class="border border-gray-300 p-2" />
                 <span v-if="errors.password" class="text-red-500">{{ errors.password }}</span>
+                <span v-if="loginErrors" class="text-red-500">{{ loginErrors }}</span>
                 <button type="submit" class="bg-red-600 hover:bg-red-800 text-white px-4 py-2 cursor-pointer"
                     :disabled="isLoading">
                     <span v-if="!isLoading">{{ t('auth.login') }}</span>
@@ -75,13 +76,18 @@ defineProps({
 const userSession = ref('');
 const userEmail = ref('');
 const userFirstName = ref('');
+const loginErrors = ref('');
 const { errors, validateAuthInputs } = useValidateInputs();
 
 const handleLogin = async () => {
     if (!validateAuthInputs(email.value, password.value, firstName.value, isLogin.value)) return;
     isLoading.value = true;
-    await signIn(email.value, password.value);
-    isLoading.value = false;
+    loginErrors.value = '';
+    const error = await signIn(email.value, password.value);
+    if (error) {
+        loginErrors.value = (error as Error).message;
+        isLoading.value = false;
+    }
 }
 
 const handleRegister = async () => {
