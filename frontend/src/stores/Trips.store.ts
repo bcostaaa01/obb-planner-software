@@ -35,27 +35,34 @@ export const useTripsStore = defineStore("trips", () => {
 
   const fetchUserTrips = async () => {
     try {
-      const { data, error } = await supabase.from("user_trips").select("*");
+      const { data: tripsData, error: tripsError } = await supabase
+        .from("user_trips")
+        .select("*");
 
-      if (error) {
-        console.error("Error fetching trips:", error);
+      if (tripsError) {
+        console.error("Error fetching trips:", tripsError);
         return [];
       }
 
+      // Get all notifications for all trips
       const { data: updates, error: updatesError } = await supabase
         .from("notifications")
         .select("*")
-        .eq("trip_id", data[0].id);
+        .in(
+          "trip_id",
+          tripsData.map((trip) => trip.id)
+        );
 
       if (updatesError) {
         console.error("Error fetching updates:", updatesError);
         return [];
       }
 
-      trips.value = data.map((trip) => ({
+      trips.value = tripsData.map((trip) => ({
         ...trip,
         updates: updates.filter((update) => update.trip_id === trip.id),
       }));
+
       return trips.value;
     } catch (error) {
       console.error("Error fetching trips:", error);

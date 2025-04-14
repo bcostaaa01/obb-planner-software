@@ -13,7 +13,9 @@
                                 segment.transfers === 1 ? 'transfer' : 'transfers' }}
                         </div>
                     </div>
-                    <TripUpdate :update="trip.updates?.[1] as TripUpdateType" v-if="trip.updates?.[1]" />
+                    <div v-if="trip.updates && trip.updates.length > 0">
+                        <TripUpdate v-for="update in trip.updates" :key="update.id" :update="update" />
+                    </div>
                 </div>
 
                 <div class="flex justify-start mb-2">
@@ -133,22 +135,11 @@ const subscribeToTrip = async () => {
             throw new Error(`Failed to create notification with user id ${session.user.id} for trip ${props.trip.id}: ${result.message}`);
         }
 
-        console.log('Making GET request for notifications...');
-        const notificationsResponse = await fetch('http://localhost:3000/api/notifications', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-
-        const notifications = await notificationsResponse.json();
-        console.log('Get notifications response:', {
-            status: notificationsResponse.status,
-            ok: notificationsResponse.ok,
-            notifications
-        });
-
-        if (!notificationsResponse.ok) {
-            throw new Error(`Failed to get notifications: ${notifications.message}`);
+        // Refresh trip data after subscribing
+        const updatedTrips = await tripsStore.fetchUserTrips();
+        const updatedTrip = updatedTrips.find(t => t.id === props.trip.id);
+        if (updatedTrip) {
+            Object.assign(props.trip, updatedTrip);
         }
 
         console.log('--- Frontend Debug End ---\n');
