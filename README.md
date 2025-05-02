@@ -24,7 +24,7 @@ The user can:
 
 ## Instructions for running the application
 
-1. Sign up to Supabase and create a project
+1. Sign up to Supabase (https://supabase.com) and create a project
 2. Run the SQL migrations in the `/frontend/src/migrations` on the SQL editor in Supabase to create the tables
 3. Copy the values from the project settings and add them to the .env variables in the `/frontend` package (`SUPABASE_URL` - project url, `SUPABASE_KEY` - anon key). Do the same for the `/backend`
 4. Bundle the backend code with `npm run build` and then run the backend with `npm run start`
