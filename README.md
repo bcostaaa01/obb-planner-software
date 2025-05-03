@@ -25,6 +25,20 @@ The user can:
 ## Instructions for running the application
 
 1. Sign up to Supabase (https://supabase.com) and create a project
+
+Then add the environment variables to an `.env` file in the `/frontend` directory.
+
+```.env
+VITE_BASE_URL=http://localhost:8080
+VITE_SUPPORTED_LOCALES=en,de
+VITE_SUPABASE_KEY=place the Supabase key here
+VITE_SUPABASE_URL=place the url of the Supabase project
+```
+
+The above can be found in the Supabase project after creation of the project on Supabase, in the API settings:
+
+<img src="./docs/image.png" />
+
 2. Run the SQL migrations in the `/frontend/src/migrations` on the SQL editor in Supabase to create the tables
 3. Copy the values from the project settings and add them to the .env variables in the `/frontend` package (`SUPABASE_URL` - project url, `SUPABASE_KEY` - anon key). Do the same for the `/backend`
 4. Bundle the backend code with `npm run build` and then run the backend with `npm run start`
